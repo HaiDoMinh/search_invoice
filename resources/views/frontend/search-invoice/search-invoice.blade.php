@@ -33,15 +33,17 @@
             <form action="">
                 <div class="container">
                     <div class="form-row justify-content-center">
-                        <div class="col-md-3" >
-                            <input type="text" class="form-control" placeholder="Nhập mã hóa đơn"
+                        <div class="col-md-5 code">
+                            <input type="text" class="form-control" placeholder="Nhập mã hóa đơn..."
                                    id="invoice-code" name="invoice-code">
                         </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control"  placeholder="Mã xác thực"
+                        <div class="col-md-5 code">
+                            <input type="text" class="form-control"  placeholder="Mã xác thực..."
                                    id="verification-code" name="verification-code">
                         </div>
-                        <button type="submit" class="btn btn-primary">Tra cứu</button>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary">Tra cứu</button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -51,18 +53,18 @@
             <div class="row">
                 <div class="col-md-4">
                     <img src="img/a.png" alt="logo">
-                    <h2>Hỗ trợ khách hàng</h2>
+                    <h4>Hỗ trợ khách hàng</h4>
                     <span>Tổng đài: 1900-6154</span>
                 </div>
                 <div class="col-md-4">
                     <img src="img/b.png" alt="logo">
-                    <h2>Chăm sóc khách hàng</h2>
+                    <h4>Chăm sóc khách hàng</h4>
                     <p>(+84) 435 149 016</p>
                     <p>Email: support@sts.vn</p>
                 </div>
                 <div class="col-md-4">
                     <img src="img/c.png" alt="logo">
-                    <h2>Tư vấn dịch vụ</h2>
+                    <h4>Tư vấn dịch vụ</h4>
                     <p>(028)-3866-4188</p>
                     <p>Email: contact@sts.vn</p>
                 </div>

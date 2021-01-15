@@ -38,16 +38,27 @@ li a:hover {
     text-align: center;
 }
 .content-search-invoice h1{
-    padding-top: 200px;
-    color: black;
-    font-weight:400;
+    padding-top: 180px;
+    color: white;
+    font-weight: 600;
+    font-size: 60px;
+    font-family: "Times New Roman", Times, serif;
 }
+.content-search-invoice .code input{
+    height: 55px;
+}
+ .content-search-invoice button{
+     height: 55px;
+     float: left;
+     width: 120px;
+     text-transform: uppercase;
+ }
 .footer{
-    padding-top: 15px;
+    padding-top: 35px;
     text-align: center;
 }
 .footer img{
-    width: 100px;
+    width: 60px;
 }
 .footer p{
     margin-bottom: 0;
