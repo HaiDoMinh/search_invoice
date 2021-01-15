@@ -47,12 +47,16 @@ li a:hover {
 .content-search-invoice .code input{
     height: 55px;
 }
- .content-search-invoice button{
+.content-search-invoice button{
      height: 55px;
      float: left;
-     width: 120px;
+     width: 100%;
      text-transform: uppercase;
- }
+}
+.content-search-invoice .form-row{
+    padding: 20px 10px;
+    background: rgba(255, 255, 255, 0.2);
+}
 .footer{
     padding-top: 35px;
     text-align: center;
