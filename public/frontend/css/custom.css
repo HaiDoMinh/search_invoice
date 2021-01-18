@@ -21,12 +21,19 @@ li a {
 }
 
 li a:hover {
-	background-color: #111111;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
 }
-
+.logo{
+    float: left;
+}
 .logo img{
 	height: 50px;
 	padding-left: 60px;
+}
+.menu{
+    float: right;
 }
 .content-search-invoice{
     background-image: url('/img/bg2.jpeg');
@@ -36,6 +43,7 @@ li a:hover {
     height: 500px; /* You must set a specified height */
     width: 100%;
     text-align: center;
+    clear: both;
 }
 .content-search-invoice h1{
     padding-top: 180px;

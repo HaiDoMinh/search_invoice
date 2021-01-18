@@ -11,20 +11,16 @@
     </head>
     <body>
         <div class="container">
-            <div class="row">
-                <div class="logo col-md-3">
-                    <img src="img/logo.png" alt="logo">
-                </div>
-                <div class="col-md-3">
-                </div>
-                <div class="col-md-6">
-                    <ul>
-                        <li><a href="#">Tra cứu</a></li>
-                        <li><a href="#">Hướng dẫn</a></li>
-                        <li><a href="#">Thông tư</a></li>
-                        <li><a href="#">Câu hỏi thường gặp</a></li>
-                    </ul>
-                </div>
+            <div class="logo">
+                <img src="img/logo.png" alt="logo">
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">Tra cứu</a></li>
+                    <li><a href="#">Hướng dẫn</a></li>
+                    <li><a href="#">Thông tư</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                </ul>
             </div>
         </div>
 

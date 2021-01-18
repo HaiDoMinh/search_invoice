@@ -17,9 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tra-cuu', function () {
-    return view('/frontend/search-invoice/search-invoice');
-});
-Route::get('/hương-dan', function () {
+Route::get('/tra-cuu', 'SearchlnvoiceController@index');
+Route::get('/huong-dan', function () {
     return view('/frontend/tutorial/tutorial');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
