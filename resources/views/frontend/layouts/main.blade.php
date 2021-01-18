@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Tra cứu hóa đơn</title>
+    <title>@yield('header')</title>
     <link rel="stylesheet" type="text/css" href="common/bootrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="frontend/css/mobi.css">
     <!-- Styles -->
 </head>
 <body>
@@ -17,34 +18,15 @@
     <div class="menu">
         <ul>
             <li><a href="{{ route('SearchlnvoiceController.index') }}">Tra cứu</a></li>
-            <li><a href={{ route('SearchlnvoiceController.tutorial') }}>Hướng dẫn</a></li>
-            <li><a href="#">Thông tư</a></li>
-            <li><a href="#">Câu hỏi thường gặp</a></li>
+            <li><a href="{{ route('SearchlnvoiceController.tutorial') }}">Hướng dẫn</a></li>
+            <li><a href="{{ route('SearchlnvoiceController.rules') }} ">Thông tư</a></li>
+            <li><a href="{{ route('SearchlnvoiceController.frequently_asked_questions') }}">Câu hỏi thường gặp</a></li>
             <li><a href="{{ route('logout') }}">Logout</a></li>
         </ul>
     </div>
 </div>
 
-<div class="content-search-invoice">
-    <h1>Tra cứu hóa đơn</h1>
-    <form action="">
-        <div class="container">
-            <div class="form-row justify-content-center">
-                <div class="col-md-5 code">
-                    <input type="text" class="form-control" placeholder="Nhập mã hóa đơn..."
-                           id="invoice-code" name="invoice-code">
-                </div>
-                <div class="col-md-5 code">
-                    <input type="text" class="form-control"  placeholder="Mã xác thực..."
-                           id="verification-code" name="verification-code">
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">Tra cứu</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
+@yield('content')
 
 <div class="footer container">
     <div class="row">

@@ -10,6 +10,11 @@ class SearchlnvoiceController extends BaseController
         return view("/frontend/search-invoice/search-invoice");
     }
 
+    public function tutorial()
+    {
+        return view("/frontend/tutorial/tutorial");
+    }
+
     public function search_invoice()
     {
 
@@ -17,7 +22,17 @@ class SearchlnvoiceController extends BaseController
 
     public function show()
     {
+//        return view("/frontend/rules/rules");
+    }
 
+    public function rules()
+    {
+        return view("/frontend/rules/rules");
+    }
+
+    public function frequently_asked_questions()
+    {
+        return view("/frontend/frequently-asked-questions/frequently-asked-questions");
     }
 }
 

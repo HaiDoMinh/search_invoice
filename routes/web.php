@@ -17,19 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tra-cuu', 'SearchlnvoiceController@index');
-Route::get('/huong-dan', function () {
-    return view('/frontend/tutorial/tutorial');
-});
+Route::get('/tra-cuu', 'SearchlnvoiceController@index')->name('SearchlnvoiceController.index');
+Route::get('/huong-dan', 'SearchlnvoiceController@tutorial')->name('SearchlnvoiceController.tutorial');
+Route::get('/thong-tu', 'SearchlnvoiceController@rules')->name('SearchlnvoiceController.rules');
+Route::get('/cau-hoi-thuong-gap', 'SearchlnvoiceController@frequently_asked_questions')
+       ->name('SearchlnvoiceController.frequently_asked_questions');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
