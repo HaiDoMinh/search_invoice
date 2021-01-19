@@ -5,6 +5,7 @@
 @section('content')
     <div class="container content">
         <h1>Hướng dẫn tra cứu hóa đơn điện tử</h1>
+
         <p>Bước 1: Truy cập vào website tra cứu hóa đơn.</p>
 
         <p>Bước 2: Nhập thông tin của hóa đơn cần tra cứu vào các ô tương ứng như: Số hóa đơn, Mã xác thực (4 ký tự) hoặc Mã nhận hóa đơn</p>
@@ -15,7 +16,7 @@
 
         <p>- Tải hóa đơn về lưu trữ bằng cách nhấn vào nút Tải về</p>
 
-        - Tra cứu hóa đơn trên trang xác minh hóa đơn của Tổng cục Thuế
+        <p>- Tra cứu hóa đơn trên trang xác minh hóa đơn của Tổng cục Thuế</p>
     </div>
 @endsection
 

@@ -5,6 +5,7 @@
 @section('content')
     <div class="content-search-invoice">
         <h1>Tra cứu hóa đơn</h1>
+        <hr>
         <form action="">
             <div class="container">
                 <div class="form-row justify-content-center">

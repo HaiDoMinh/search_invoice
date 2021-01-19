@@ -8,10 +8,24 @@
     <link rel="stylesheet" type="text/css" href="common/bootrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/custom.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/mobi.css">
+    <link rel="stylesheet" type="text/css" href="frontend/css/mmenu-light.css">
     <!-- Styles -->
 </head>
 <body>
 <div class="container">
+    <div class="header">
+        <a href="#menumobi"><span></span></a>
+        <nav id="menumobi">
+            <ul>
+                <li class="Selected"><a href="{{ route('SearchlnvoiceController.index') }}">Tra cứu</a></li>
+                <li><a href="{{ route('SearchlnvoiceController.tutorial') }}">Hướng dẫn</a></li>
+                <li><a href="{{ route('SearchlnvoiceController.rules') }} ">Thông tư</a></li>
+                <li><a href="{{ route('SearchlnvoiceController.frequently_asked_questions') }}">Câu hỏi thường gặp</a></li>
+                <li><a href="{{ route('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <div class="logo">
         <img src="img/logo.png" alt="logo">
     </div>
@@ -49,7 +63,40 @@
         </div>
     </div>
 </div>
+<div class="sign-box">
+    <p class="left">Copyright © STS 2020. All Rights Reserved.</p>
+    <div class="right">
+        <a href="">Liên hệ</a>|<a href="">Chính sách riêng tư</a>|<a href="">Điều khoản sử dụng</a>
+    </div>
+    <div class="clear"></div>
+</div>
 <script src="common/jquery/jquery-3.5.1.min.js"></script>
 <script src="common/bootrap/js/bootstrap.min.js"></script>
+<script src="frontend/js/mmenu-light.js"></script>
+<script>
+    var menu = new MmenuLight(
+        document.querySelector( '#menumobi' ),
+        'all'
+    );
+
+    var navigator = menu.navigation({
+        // selectedClass: 'Selected',
+        // slidingSubmenus: true,
+        // theme: 'dark',
+        // title: 'Menu'
+    });
+
+    var drawer = menu.offcanvas({
+        // position: 'left'
+    });
+
+    //	Open the menu.
+    document.querySelector( 'a[href="#menumobi"]' )
+        .addEventListener( 'click', evnt => {
+            evnt.preventDefault();
+            drawer.open();
+        });
+
+</script>
 </body>
 </html>
