@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class SearchlnvoiceController extends BaseController
 {
@@ -18,6 +20,12 @@ class SearchlnvoiceController extends BaseController
     public function search_invoice()
     {
 
+        $response = Http::withBasicAuth('admin', 'admin')
+            ->get('http://192.168.20.60:3001/rpc/api_getallcountry');
+
+        $jsonData = $response->json();
+
+        dd($jsonData);
     }
 
     public function show()
