@@ -42,34 +42,37 @@
 
 @yield('content')
 
-<div class="footer container">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="img/a.png" alt="logo">
-            <h4>Hỗ trợ khách hàng</h4>
-            <span>Tổng đài: 1900-6154</span>
-        </div>
-        <div class="col-md-4">
-            <img src="img/b.png" alt="logo">
-            <h4>Chăm sóc khách hàng</h4>
-            <p>(+84) 435 149 016</p>
-            <p>Email: support@sts.vn</p>
-        </div>
-        <div class="col-md-4">
-            <img src="img/c.png" alt="logo">
-            <h4>Tư vấn dịch vụ</h4>
-            <p>(028)-3866-4188</p>
-            <p>Email: contact@sts.vn</p>
+<div class="footer-box">
+    <div class="container">
+        <div class="row footer">
+            <div class="col-md-4">
+                <img src="img/a.png" alt="logo">
+                <h4>Hỗ trợ khách hàng</h4>
+                <span>Tổng đài: 1900-6154</span>
+            </div>
+            <div class="col-md-4">
+                <img src="img/b.png" alt="logo">
+                <h4>Chăm sóc khách hàng</h4>
+                <p>(+84) 435 149 016</p>
+                <p>Email: support@sts.vn</p>
+            </div>
+            <div class="col-md-4">
+                <img src="img/c.png" alt="logo">
+                <h4>Tư vấn dịch vụ</h4>
+                <p>(028)-3866-4188</p>
+                <p>Email: contact@sts.vn</p>
+            </div>
         </div>
     </div>
-</div>
-<div class="sign-box">
-    <p class="left">Copyright © STS 2020. All Rights Reserved.</p>
-    <div class="right">
-        <a href="">Liên hệ</a>|<a href="">Chính sách riêng tư</a>|<a href="">Điều khoản sử dụng</a>
+    <div class="sign-box">
+        <p class="left">Copyright © STS 2020. All Rights Reserved.</p>
+        <div class="right">
+            <a href="">Liên hệ</a>|<a href="">Chính sách riêng tư</a>|<a href="">Điều khoản sử dụng</a>
+        </div>
+        <div class="clear"></div>
     </div>
-    <div class="clear"></div>
 </div>
+
 <script src="common/jquery/jquery-3.5.1.min.js"></script>
 <script src="common/bootrap/js/bootstrap.min.js"></script>
 <script src="frontend/js/mmenu-light.js"></script>

@@ -13,9 +13,6 @@
     .logo img {
         padding-left: 0;
     }
-    .footer{
-        padding-bottom: 110px;
-    }
     .header{
         display: block;
     }
@@ -42,16 +39,16 @@
         padding: 25px;
         float: left;
     }
-    .header.fixed {
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
-    .footer.fixed {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-    }
+    /*.header.fixed {*/
+    /*    position: fixed;*/
+    /*    top: 0;*/
+    /*    left: 0;*/
+    /*}*/
+    /*.footer-box .fixed {*/
+    /*    position: fixed;*/
+    /*    bottom: 0;*/
+    /*    left: 0;*/
+    /*}*/
     .header a {
         display: block;
         width: 28px;
