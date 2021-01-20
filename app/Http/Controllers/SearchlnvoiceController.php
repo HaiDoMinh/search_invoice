@@ -26,7 +26,7 @@ class SearchlnvoiceController extends BaseController
                             [
                                 "docno" => strtoupper($docno)
                             ]);
-        
+
         $jsonData = $response->json();
         if($jsonData['errorCode'] == "0089")
         {
