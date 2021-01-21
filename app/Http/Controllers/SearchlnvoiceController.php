@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use SoapClient;
 
-$secret_key = '7LvIo70vxlascqLNeu4iQSluIFmgeQcbU/p7XGFYUiI=:99xFQOkcgSH0ahsmsw6vLw==';
-$key = '7LvIo70vxlascqLNeu4iQSluIFmgeQcbU/p7XGFYUiI=';
-$iv = '99xFQOkcgSH0ahsmsw6vLw==';
+$secret_key = 'E80llAfPt+z6kzVhuQZeg6kDWXYCa30jBbnDZ6gBQeQ=:NzzZqjHyKVdazNHtUJVH4g==';
+$key = 'E80llAfPt+z6kzVhuQZeg6kDWXYCa30jBbnDZ6gBQeQ=';
+$iv = 'NzzZqjHyKVdazNHtUJVH4g==';
 $key = base64_decode($key);
 $iv = base64_decode($iv);
 
@@ -25,23 +25,36 @@ function encrypt_decrypt($action, $string, $key, $iv) {
         $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, OPENSSL_RAW_DATA, $iv);
 
         $out = gzdecode ($output);
+        file_put_contents('D:/file.pdf',base64_decode($out));
+
+        // The location of the PDF file
+        // on the server
+            $filename = "/file.pdf";
+
+        // Header content type
+            header("Content-type: application/pdf");
+
+            header("Content-Length: " . filesize($filename));
+
+        // Send the file to the browser.
+        echo('2222222222');
+        echo(base64_decode($out));
         var_dump($out);
+
     }
 
     return $output;
 }
-$string = '{"CmdType":904, "CommandObject":"0101871229"}';
+$string = '{"CmdType":808, "CommandObject":"1003103"}';
 $encrypted_txt = encrypt_decrypt('encrypt', $string, $key, $iv);
 
 $requestParams = array(
-    'partnerGUID' => "947ec492-2afa-4797-a7ab-eaa868b3d535",
+    'partnerGUID' => "b371b99b-d764-431e-b85e-232775a83f27",
     'CommandData' => $encrypted_txt
 );
 
 $client = new SoapClient('https://wsdemo.ehoadon.vn/WSPublicEhoadon.asmx?WSDL');
 $response = $client->ExecCommand($requestParams);
-
-//var_dump($response);
 
 encrypt_decrypt('decrypt', $response->ExecCommandResult, $key, $iv);
 
