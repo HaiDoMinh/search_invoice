@@ -18,11 +18,12 @@ Route::get('/', function () {
 });
 
 Route::get('/tra-cuu', 'SearchlnvoiceController@index')->name('SearchlnvoiceController.index');
-Route::post('/tra-cuu-hd', 'SearchlnvoiceController@search_invoice')->name('SearchlnvoiceController.search_invoice');
+Route::post('/tra-cuu-hd', 'SearchlnvoiceController@searchInvoice')->name('SearchlnvoiceController.searchInvoice');
 Route::get('/huong-dan', 'SearchlnvoiceController@tutorial')->name('SearchlnvoiceController.tutorial');
 Route::get('/thong-tu', 'SearchlnvoiceController@rules')->name('SearchlnvoiceController.rules');
 Route::get('/cau-hoi-thuong-gap', 'SearchlnvoiceController@frequently_asked_questions')
        ->name('SearchlnvoiceController.frequently_asked_questions');
+Route::get('/test-tra-cuu','SearchlnvoiceController@show')->name('SearchlnvoiceController.show');
 
 Auth::routes();
 

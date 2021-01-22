@@ -6,7 +6,7 @@
     <div class="content-search-invoice">
         <h1>Tra cứu hóa đơn</h1>
         <hr>
-        <form method="POST" action="{{ route('SearchlnvoiceController.search_invoice') }}">
+        <form method="POST" action="{{ route('SearchlnvoiceController.searchInvoice') }}">
             @csrf
             <div class="container">
                 <div class="form-row justify-content-center">
