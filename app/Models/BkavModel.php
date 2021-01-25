@@ -37,7 +37,6 @@ class BkavModel extends Model
 
             $out = json_decode($out, true);
             $pdf = json_decode($out['Object'], true);
-
             echo '<iframe src="data:application/pdf;base64,' . $pdf['PDF'] . '"></iframe>';
 
 //            echo "<div style='text-align: center'>";

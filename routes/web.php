@@ -18,7 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/tra-cuu', 'SearchlnvoiceController@index')->name('SearchlnvoiceController.index');
-Route::post('/tra-cuu-hd', 'SearchlnvoiceController@searchInvoice')->name('SearchlnvoiceController.searchInvoice');
+//Route::post('/tra-cuu-hd', 'SearchlnvoiceController@searchInvoice')->name('SearchlnvoiceController.searchInvoice');
+Route::get('/tra-cuu-hd', 'SearchlnvoiceController@searchInvoice')->name('SearchlnvoiceController.searchInvoice');
 Route::get('/huong-dan', 'SearchlnvoiceController@tutorial')->name('SearchlnvoiceController.tutorial');
 Route::get('/thong-tu', 'SearchlnvoiceController@rules')->name('SearchlnvoiceController.rules');
 Route::get('/cau-hoi-thuong-gap', 'SearchlnvoiceController@frequently_asked_questions')
@@ -32,3 +33,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/contact-form', [CaptchaServiceController::class, 'index']);
 Route::post('/captcha-validation', [CaptchaServiceController::class, 'capthcaFormValidate']);
 Route::get('/reload-captcha', [CaptchaServiceController::class, 'reloadCaptcha']);
+Route::get('/reload-captcha-code', [CaptchaServiceController::class, 'reloadCaptchaCode']);
+
+Route::get('/logout', 'Auth\LoginController@logout');

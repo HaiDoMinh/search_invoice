@@ -2,8 +2,6 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	/*overflow: hidden;*/
-	/*background-color: #333333;*/
 }
 
 li {
@@ -111,5 +109,30 @@ li a:hover {
      clear: both;
      margin: 0;
 }
-
-
+.result {
+    text-align: center;
+}
+.result iframe{
+    width:600px;
+    height:800px;
+    margin-top: 30px;
+}
+.result span{
+    margin-top: 30px;
+}
+.captcha {
+    width: 30%;
+    float: left;
+    position: absolute;
+}
+.captcha button{
+    padding: 0;
+}
+.captcha img{
+    max-width: 100%;
+    height: 100%;
+}
+.verification-box {
+    width: 70%;
+    float: right;
+}

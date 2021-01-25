@@ -5,7 +5,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\BkavModel;
-
+session_start();
 class SearchlnvoiceController extends BaseController
 {
 
@@ -21,7 +21,15 @@ class SearchlnvoiceController extends BaseController
 
     public function searchInvoice( Request $request )
     {
-        $docno = $request['invoice-code']; //"HDBp/HER.05/2012/098";
+        $docno = $request['docno'];
+        $verification = $request['verification'];
+
+        if( empty( $verification) || $_SESSION['captcha'] != $verification )
+        {
+            echo "<span>Captcha không đúng</span>";
+            return;
+        }
+
         $urlGet = env('API_URL');
         $user = env('API_USER');
         $pass = env('API_PASS');
@@ -30,15 +38,12 @@ class SearchlnvoiceController extends BaseController
         $status = $bkav->GetDataInvoice( $docno, $user, $pass, $urlGet );
         if(!$status)
         {
-            dd("Không tìm thấy hóa đơn. Bạn vui lòng thử lại");
+            echo "<span>Không tìm thấy hóa đơn. Bạn vui lòng thử lại</span>";
         }
     }
 
     public function show()
     {
-//        $bkav = new BkavModel();
-//        $bkav->GetDataInvoice();
-        return view("/frontend/ShowInvoicePDF");
     }
 
     public function rules()
