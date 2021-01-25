@@ -14,35 +14,20 @@ class BkavModel extends Model
         $encryptMethod = "AES-256-CBC";
 
         if ($action == 'encrypt') {
+
             $compressed = gzencode($string, 9);
             $output = openssl_encrypt($compressed, $encryptMethod, $key, OPENSSL_RAW_DATA, $iv);
 
             $output = base64_encode($output);
         } else if ($action == 'decrypt') {
+
             $output = openssl_decrypt(base64_decode($string), $encryptMethod, $key, OPENSSL_RAW_DATA, $iv);
 
             $out = gzdecode($output);
-           // file_put_contents('pdf/file.pdf', base64_decode($out));
-
-            // The location of the PDF file
-            // on the server
-            //$filename = "/file.pdf";
-            // Header content type
-//            header("Content-type: application/pdf");
-//
-//            header("Content-Length: " . filesize($filename));
-
-            // Send the file to the browser.
-            //echo(base64_decode($out));
-
             $out = json_decode($out, true);
             $pdf = json_decode($out['Object'], true);
-            echo '<iframe src="data:application/pdf;base64,' . $pdf['PDF'] . '"></iframe>';
 
-//            echo "<div style='text-align: center'>";
-//            echo '<iframe src="pdf/file.pdf" style="width:600px; height:100%;"></iframe>';
-//            echo "</div>";
-            //var_dump($out);
+            echo '<iframe src="data:application/pdf;base64,' . $pdf['PDF'] . '"></iframe>';
         }
         return $output;
     }

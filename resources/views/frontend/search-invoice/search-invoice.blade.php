@@ -42,6 +42,7 @@
     $('#search').click(function () {
         var docno = $(this).closest('.form-row').find('.invoice-code').val();
         var verification = $('#verification-code').val();
+        $(this).closest('.form-row').find('img').attr('src', 'reload-captcha-code');
 
         $.ajax({
             type: 'GET',
