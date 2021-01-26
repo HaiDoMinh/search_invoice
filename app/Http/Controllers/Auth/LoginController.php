@@ -6,6 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Input;
+
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests;
+use Validator;
+use Auth;
+use Mail;
+
 class LoginController extends Controller
 {
     /*
@@ -37,4 +50,73 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function login(Request $request)
+    {
+        $rules = [
+            'email' => 'required',
+            'password' => 'required|min:6'
+        ];
+        $messages = [
+            'email.required' => 'Email Không được để trống',
+            'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
+            'password.required' => 'Mật khẩu là trường bắt buộc',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        $input = $request->all();
+
+        $remember = true;
+        if( !isset($input['remember']) ){
+            $remember = false;
+        }
+
+        if ($validator->fails()) {
+            return redirect()->route('login', ['input' => $input])->with('error', 'Email, Phone hoặc Mật khẩu không đúng.');
+
+        } else {
+            $emailOrPhone = $request->input('email');
+            $password = $request->input('password');
+
+            if( is_numeric($request->get('email')) )
+            {
+                if( \Auth::attempt( ['phone' => $emailOrPhone, 'password' =>$password], $remember ) )
+                {
+                    if( \Auth::user()->status == \App\Models\User::PUBLISH ){
+                        if( isset( \Auth::user()->type ) && (\Auth::user()->type == \App\Models\User::TYPE_MANAGE) )
+                        {
+                            return redirect()->intended('/admin');
+                        }
+                        return redirect()->intended('/tra-cuu');
+                    } else {
+                        \Auth::logout();
+                        return redirect()->route('login')->with('error','Tài khoản chưa được kích hoạt.');
+
+                    } //  End check status
+
+                } // End login
+            } else {
+                if( \Auth::attempt( ['email' => $emailOrPhone, 'password' =>$password], $remember ) )
+                {
+                    if( \Auth::user()->status == \App\Models\User::PUBLISH ){
+                        if( isset( \Auth::user()->type ) && (\Auth::user()->type == \App\Models\User::TYPE_MANAGE) )
+                        {
+                            return redirect()->intended('/admin');
+                        }
+                        return redirect()->intended('/tra-cuu');
+                    } else {
+                        \Auth::logout();
+                        return redirect()->route('login')->with('error','Tài khoản chưa được kích hoạt.');
+
+                    } // End check status
+                } // End if login
+            } // End check email or phone
+            return redirect()->route('login')->with('error','Email, Phone hoặc Mật khẩu không đúng.');
+        }
+    } // End func
 }

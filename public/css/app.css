@@ -1,0 +1,8 @@
+.hold-transition{
+  background-image: url("/uploads/images/bg-login.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important; 
+}
+.login-logo a, .register-logo a {
+    color: #FFF;
+}
