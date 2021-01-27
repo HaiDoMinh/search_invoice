@@ -10,11 +10,11 @@
         <div>
             <small>
                 <a class="btn btn-primary btn-sm"
-                   href="{!! route('post.index') !!}"><i class="fa fa-list-ul"> {{ __('Danh sách') }}</i></a>
+                   href="{!! route('account.index') !!}"><i class="fa fa-list-ul"> {{ __('Danh sách') }}</i></a>
             </small>
             <small>
                 <a class="btn btn-success btn-sm"
-                   href="{!! route('post.create') !!}"><i class="fa fa-plus"> {{ __('Tạo mới') }}</i></a>
+                   href="{!! route('account.create') !!}"><i class="fa fa-plus"> {{ __('Tạo mới') }}</i></a>
             </small>
         </div>
         <ol class="breadcrumb">
@@ -28,105 +28,133 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <form method="POST" action="{!! route('post.store') !!}" enctype="multipart/form-data">
-                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                <!-- left column -->
-                <div class="col-md-9">
-                    <!-- general form elements -->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">{{ __('Nội dung bài viết') }}</h3>
-                        </div>
-                        <!-- /.box-header -->
-
-                        <!-- form start -->
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>{{ __('Tiêu đề bài viế') }} <span class="require">(*)</span></label>
-                                <input type="text" class="form-control" name="title"
-                                       id="title" placeholder="{{ __('Tên bài viết') }}..."
-                                       value="{!! $post->title !!}" required>
-                            </div>
-                            <div class="form-group">
-                                <label>{{ __('Nội dung bài viết') }}</label>
-                                <textarea type="text" min="0" class="form-control" name="content"
-                                          id="content" placeholder="{{ __('Nội dung bài viết') }}..."
-                                          value="{!! $post->content !!}">{!! $post->content !!}</textarea>
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{ __('Thông tin tài khoản') }}</h3>
                     </div>
-                    <!-- /.box -->
-                </div>
+                    <!-- /.box-header -->
 
-                <div class="col-md-3">
-                    <!-- general form elements -->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">{{ __('Thông tin bài viết') }}</h3>
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>{{ __('Họ và tên') }} <span class="require">(*)</span></label>
+                            <input type="text" class="form-control" name="name"
+                                   id="name" placeholder="{{ __('Họ và tên') }}..."
+                                   value="{{ $account->name }}" required>
                         </div>
-                        <!-- /.box-header -->
-
-                        <!-- form start -->
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>{{ __('Trạng thái') }}</label>
-                                <select class="form-control" name="status">
-                                    @if( !empty( \App\Models\Post::statusLabelArr() ) )
-                                        @foreach( \App\Models\Post::statusLabelArr() as $key => $item )
-                                            <option @if( $key == old('status') ) selected @endif
-                                            value="{!! $key !!}">
-                                                {!! $item !!}
-                                            </option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>{{ __('Kiểu bài viết') }}</label>
-                                <input type="text" class="form-control handle-price" name="type"
-                                       id="type" placeholder="{{ __('Kiểu bài viết') }}..."
-                                       value="{{ $post->type }}">
-                            </div>
+                        <div class="form-group">
+                            <label>{{ __('SĐT') }}</label>
+                            <input type="phone" min="0" class="form-control" name="phone"
+                                   id="phone" placeholder="{{ __('Số điện thoại') }}..."
+                                   value="{!! $account->phone !!}">
                         </div>
-                        <!-- /.box-body -->
-
+                        <div class="form-group">
+                            <label>Mật khẩu <span>(*)</span></label>
+                            <input type="password" class="form-control" name="password"
+                                   id="password" placeholder="Password..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ __('email') }}</label>
+                            <input type="email" min="0" class="form-control" name="email"
+                                   id="email" placeholder="{{ __('Email') }}..."
+                                   value="{!! $account->email !!}">
+                        </div>
                     </div>
-                    <!-- /.box -->
+                    <!-- /.box-body -->
+
                 </div>
+                <!-- /.box -->
+            </div>
 
-                <div class="col-md-12">
-                    <!-- general form elements -->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">{{ __('Thông tin Khác') }}</h3>
-                        </div>
-                        <!-- /.box-header -->
-
-                        <!-- form start -->
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>{{ __('Ghi chú') }}</label>
-                                <textarea class="form-control" name="note"
-                                          placeholder="{{ __('Ghi chú') }}...">{{ old('note') }}</textarea>
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{ __('Trạng thái tài khoản') }}</h3>
                     </div>
-                    <!-- /.box -->
-                </div>
+                    <!-- /.box-header -->
 
-                <!--/.col (left) -->
-                <div class="col-md-12 box-footer">
-                    <button type="submit" class="btn btn-lg btn-success pull-right">
-                        <i class="fa fa-save"></i>
-                        <span>{{ __('Lưu tạo mới') }}</span>
-                    </button>
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>{{ __('Trạng thái') }}</label>
+                            <select class="form-control" name="status">
+                                @if( !empty( \App\Models\User::statusLabelArr() ) )
+                                    @foreach( \App\Models\User::statusLabelArr() as $key => $item )
+                                        <option @if( $key == $account->status ) selected @endif
+                                        value="{!! $key !!}">
+                                            {!! $item !!}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ __('Hình thức') }}</label>
+                            <select class="form-control" name="type">
+                                @if( !empty( \App\Models\User::typeArr() ) )
+                                    @foreach( \App\Models\User::typeArr() as $key => $item )
+                                        <option @if( $key == $account->type ) selected @endif
+                                        value="{!! $key !!}">
+                                            {!! $item !!}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ __('Vai trò') }}</label>
+                            <select class="form-control" name="role">
+                                @if( !empty( \App\Models\User::roleArr() ) )
+                                    @foreach( \App\Models\User::roleArr() as $key => $item )
+                                        <option @if( $key == $account->role ) selected @endif
+                                        value="{!! $key !!}">
+                                            {!! $item !!}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
                 </div>
-                <!--/.col (right) -->
-            </form>
+                <!-- /.box -->
+            </div>
+
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{ __('Thông tin Khác') }}</h3>
+                    </div>
+                    <!-- /.box-header -->
+
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>{{ __('Ghi chú') }}</label>
+                            <textarea class="form-control" name="note"
+                                      placeholder="{{ __('Ghi chú') }}...">{{ $account->note }}</textarea>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                </div>
+                <!-- /.box -->
+            </div>
+
+            <!--/.col (left) -->
+            <div class="col-md-12 box-footer">
+                <button type="submit" class="btn btn-lg btn-success pull-right">
+                    <i class="fa fa-save"></i>
+                    <span>{{ __('Lưu tạo mới') }}</span>
+                </button>
+            </div>
+            <!--/.col (right) -->
         </div>
         <!-- /.row -->
     </section>

@@ -20,12 +20,12 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-credit-card"></i>
-                    <span>Quản lý bài viết</span>
+                    <span>Quản lý pages</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('post.index') }}"><i class="fa fa-list"></i> Tất cả</a></li>
-                    <li><a href="{{ route('post.create') }}"><i class="fa fa-plus-square-o"></i> Bài viết mới</a></li>
+                    <li><a href="{{ route('pages.index') }}"><i class="fa fa-list"></i> Tất cả</a></li>
+                    <li><a href="{{ route('pages.create') }}"><i class="fa fa-plus-square-o"></i> Thêm mới</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -36,7 +36,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('account.index') }}"><i class="fa fa-list"></i> Tất cả</a></li>
-                    <li><a href="{{ route('account.create') }}"><i class="fa fa-plus-square-o"></i>Thêm mới</a></li>
+                    <li><a href="{{ route('account.create') }}"><i class="fa fa-plus-square-o"></i> Thêm mới</a></li>
                 </ul>
             </li>
             <li class="alone">

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use SoapClient;
+use \Auth;
 
 class BkavModel extends Model
 {
@@ -31,24 +32,33 @@ class BkavModel extends Model
         }
         return $output;
     }
-    public function GetDataInvoiceInfo($docno, $user, $pass, $urlGet)
+    public function GetDataInvoiceInfo($docno, $user, $pass, $urlGet, $confimCode)
     {
-        $response = Http::withBasicAuth($user, $pass)
-            ->get($urlGet.'api_geteinvoiceinfo',
-                [
-                    "docno" => strtoupper($docno)
-                ]);
-
+        if( empty( Auth::user() ) ) {
+            $response = Http::withBasicAuth($user, $pass)
+                ->get($urlGet . 'api_geteinvoicemtc',
+                    [
+                        "docno" => urldecode(strtoupper($docno)),
+                        "mtckey" => urldecode($confimCode)
+                    ]);
+        } else {
+            $response = Http::withBasicAuth($user, $pass)
+                ->get($urlGet . 'api_geteinvoiceinfo',
+                    [
+                        "docno" => urldecode(strtoupper($docno))
+                    ]);
+        }
         $jsonDataInvoiceInfo = $response->json();
 
         return $jsonDataInvoiceInfo;
     }
 
-    public function GetDataInvoice($docno, $user, $pass, $urlGet)
+    public function GetDataInvoice($docno, $user, $pass, $urlGet, $confimCode = null)
     {
         $status = true;
-        $jsonDataInvoiceInfo = $this->GetDataInvoiceInfo($docno, $user, $pass, $urlGet);
-        if( !empty($jsonDataInvoiceInfo['errorCode'] ) && $jsonDataInvoiceInfo['errorCode'] == "0089")
+        $jsonDataInvoiceInfo = $this->GetDataInvoiceInfo($docno, $user, $pass, $urlGet, $confimCode);
+
+        if( !empty($jsonDataInvoiceInfo['errorCode'] ))
         {
             $status = false;
             return $status;
@@ -63,7 +73,7 @@ class BkavModel extends Model
             ]);
         $jsonDataWsInfo = $response->json();
 
-        if( !empty($jsonDataInvoiceInfo['errorCode'] ) && $jsonDataInvoiceInfo['errorCode'] == "010" )
+        if( !empty($jsonDataInvoiceInfo['errorCode'] ) )
         {
             $status = false;
             return $status;

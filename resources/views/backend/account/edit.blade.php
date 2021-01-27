@@ -10,11 +10,11 @@
         <div>
             <small>
                 <a class="btn btn-primary btn-sm"
-                   href="{!! route('post.index') !!}"><i class="fa fa-list-ul"> {{ __('Danh sách') }}</i></a>
+                   href="{!! route('account.index') !!}"><i class="fa fa-list-ul"> {{ __('Danh sách') }}</i></a>
             </small>
             <small>
                 <a class="btn btn-success btn-sm"
-                   href="{!! route('post.create') !!}"><i class="fa fa-plus"> {{ __('Tạo mới') }}</i></a>
+                   href="{!! route('account.create') !!}"><i class="fa fa-plus"> {{ __('Tạo mới') }}</i></a>
             </small>
         </div>
         <ol class="breadcrumb">
@@ -28,32 +28,41 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <form method="POST" action="{!! route('post.update', ['post' => $post->id]) !!}" enctype="multipart/form-data">
+            <form method="POST" action="{!! route('account.store') !!}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                <input type="hidden" name="_method" value="PUT">
-
-                    <!-- left column -->
-                <div class="col-md-9">
+                <!-- left column -->
+                <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{ __('Nội dung bài viết') }}</h3>
+                            <h3 class="box-title">{{ __('Thông tin tài khoản') }}</h3>
                         </div>
                         <!-- /.box-header -->
 
                         <!-- form start -->
                         <div class="box-body">
                             <div class="form-group">
-                                <label>{{ __('Tiêu đề bài viế') }} <span class="require">(*)</span></label>
-                                <input type="text" class="form-control" name="title"
-                                       id="title" placeholder="{{ __('Tên bài viết') }}..."
-                                       value="{!! $post->title !!}" required>
+                                <label>{{ __('Họ và tên') }} <span class="require">(*)</span></label>
+                                <input type="text" class="form-control" name="name"
+                                       id="name" placeholder="{{ __('Tên bài viết') }}..."
+                                       value="{!! $account->name !!}" required>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('Nội dung bài viết') }}</label>
-                                <textarea type="text" min="0" class="form-control" name="content"
-                                          id="content" placeholder="{{ __('Nội dung bài viết') }}..."
-                                          value="{!! $post->content !!}">{!! $post->content !!}</textarea>
+                                <label>{{ __('SĐT') }}</label>
+                                <input type="phone" min="0" class="form-control" name="phone"
+                                       id="phone" placeholder="{{ __('Số điện thoại') }}..."
+                                       value="{!! $account->phone !!}">
+                            </div>
+                            <div class="form-group">
+                                <label>Mật khẩu <span>(*)</span></label>
+                                <input type="password" class="form-control" name="password"
+                                       id="password" placeholder="Password...">
+                            </div>
+                            <div class="form-group">
+                                <label>{{ __('Email') }}</label>
+                                <input type="email" min="0" class="form-control" name="email"
+                                       id="phone" placeholder="{{ __('Email') }}..."
+                                       value="{!! $account->email !!}">
                             </div>
                         </div>
                         <!-- /.box-body -->
@@ -62,34 +71,39 @@
                     <!-- /.box -->
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{ __('Thông tin bài viết') }}</h3>
+                            <h3 class="box-title">{{ __('Trạng thái tài khoản') }}</h3>
                         </div>
                         <!-- /.box-header -->
 
                         <!-- form start -->
                         <div class="box-body">
                             <div class="form-group">
-                                <label>{{ __('Trạng thái') }}</label>
+                                <label>Trạng thái</label>
                                 <select class="form-control" name="status">
-                                    @if( !empty( \App\Models\Post::statusLabelArr() ) )
-                                        @foreach( \App\Models\Post::statusLabelArr() as $key => $item )
-                                            <option @if( $key == old('status') ) selected @endif
-                                            value="{!! $key !!}">
-                                                {!! $item !!}
-                                            </option>
-                                        @endforeach
-                                    @endif
+                                    <option value="<?= \App\Models\User::PUBLISH ?>">Hoạt động</option>
+                                    <option value="<?= \App\Models\User::PENDING ?>">Ngừng hoạt động</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('Kiểu bài viết') }}</label>
-                                <input type="text" class="form-control handle-price" name="type"
-                                       id="type" placeholder="{{ __('Kiểu bài viết') }}..."
-                                       value="{{ $post->type }}">
+                                <label>Hình thức</label>
+                                <select class="form-control" name="type">
+                                    <option value="<?= \App\Models\User::TYPE_PC ?>">Người dùng PC</option>
+                                    <option value="<?= \App\Models\User::TYPE_MANAGE ?>">Người dùng Manage</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Vai trò</label>
+                                <select class="form-control" name="role">
+                                    @if( !empty( $roles ) )
+                                        @foreach( $roles as $key => $role )
+                                            <option value="{!! $key !!}">{!! $role !!}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                             </div>
                         </div>
                         <!-- /.box-body -->
@@ -111,7 +125,7 @@
                             <div class="form-group">
                                 <label>{{ __('Ghi chú') }}</label>
                                 <textarea class="form-control" name="note"
-                                          placeholder="{{ __('Ghi chú') }}...">{{ $post->note }}</textarea>
+                                          placeholder="{{ __('Ghi chú') }}...">{!! $account->note !!}</textarea>
                             </div>
                         </div>
                         <!-- /.box-body -->

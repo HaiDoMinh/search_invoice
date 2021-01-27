@@ -36,10 +36,57 @@ class CaptchaServiceController extends Controller
         $img = imagecreate(150,50);
         $background = imagecolorallocate($img, 255,255,255);
         $text_color = imagecolorallocate($img, 0,0,0);
-        imagestring($img, 15,50,15, $string, $text_color);
+        imagestring($img, 20,50,15, $string, $text_color);
 
         header("Content-type: image/png");
         imagepng($img);
         imagedestroy($img);
+    }
+
+    public function captcha()
+    {
+        function randomString($length = 4)
+        {
+            $str = "";
+            $characters = array_merge(range('a', 'z'), range('0', '9'));
+            $max = count($characters) - 1;
+            for ($i = 0; $i < $length; $i++) {
+                $rand = mt_rand(0, $max);
+                $str .= $characters[$rand];
+            }
+            return $str;
+        }
+
+        //tell the browser that this is an image
+        header("Cache-Control: no-cache, must-revalidate");
+        header('Content-type: image/png');
+
+        //height and width of the captch image
+        $width = 80;
+        $height = 30;
+
+        //generate the random code
+        $code = randomString();
+        session_start();
+        $_SESSION['captcha'] = $code;
+        //save it in SESSION for furhter form validation
+
+        //create the image resource
+        $im = imagecreatetruecolor($width, $height);
+        $bg = imagecolorallocate($im, 255, 255, 255); //background color
+        $fg = imagecolorallocate($im, 0, 0, 0);//text color
+
+        //fill the image resource with the bg color
+        imagefill($im, 0, 0, $bg);
+
+        //Add the random code of string to the image
+        imagestring($im, 10, 16, 6, $code, $fg);//imagestring
+
+
+        //generate the png image
+        imagepng($im);
+
+        //destroy the image
+        imagedestroy($im);
     }
 }

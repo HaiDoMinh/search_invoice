@@ -51,15 +51,15 @@
                         </form>
                     </div>
                     <div class="box-body">
-                        <table class="table table-striped ">
+                        <table class="table table-striped table-dark">
                             <thead>
                                 <tr>
                                     <th class="sorting_desc">{{ __('ID') }}</th>
                                     <th>{{ __('Họ và tên') }}</th>
                                     <th>{{ __('Email') }}</th>
                                     <th>{{ __('Tình trạng') }}</th>
-                                    <th>{{ __('Role') }}</th>
-                                    <th>{{ __('Type') }}</th>
+                                    <th>{{ __('Vai trò') }}</th>
+                                    <th>{{ __('Hình thức') }}</th>
                                     <th>{{ __('Ngày tạo') }}</th>
 									<th>{{ __('Ngày cập nhật') }}</th>
                                     <th>{{ __('Thao tác') }}</th>
@@ -79,15 +79,15 @@
 											<td data-title="Ngày cập nhật">{!! !empty($item->updated_at) ? date('d/m/Y', strtotime($item->updated_at)) : '' !!}</td>
                                             <td data-title="Thao tác">
                                                 <a class="btn btn-sm btn-info" title="Chi tiết"
-                                                   href="{!! route('post.show', ['post' => $item->id]) !!}">
+                                                   href="{!! route('account.show', ['account' => $item->id]) !!}">
                                                     <i class="fa fa-eye"> {{ __('Chi tiết') }}</i>
                                                 </a>
                                                 <a class="btn btn-sm btn-warning" title="Sửa cập nhật"
-                                                    href="{!! route('post.edit', ['post' => $item->id]) !!}">
+                                                    href="{!! route('account.edit', ['account' => $item->id]) !!}">
                                                     <i class="fa fa-edit"> Cập nhật</i>
                                                 </a>
                                                 <form class="btn btn-sm submit_confirm" style="padding: 1px 0px;" method="POST"
-                                                      action="{!! route('post.destroy', ['post' => $item->id]) !!}">
+                                                      action="{!! route('account.destroy', ['account' => $item->id]) !!}">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="submit" class="btn btn-sm btn-danger">

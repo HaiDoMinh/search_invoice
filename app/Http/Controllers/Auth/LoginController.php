@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
 
@@ -90,7 +92,7 @@ class LoginController extends Controller
                     if( \Auth::user()->status == \App\Models\User::PUBLISH ){
                         if( isset( \Auth::user()->type ) && (\Auth::user()->type == \App\Models\User::TYPE_MANAGE) )
                         {
-                            return redirect()->intended('/admin');
+                            return redirect()->intended('/admin/pages');
                         }
                         return redirect()->intended('/tra-cuu');
                     } else {
@@ -106,7 +108,7 @@ class LoginController extends Controller
                     if( \Auth::user()->status == \App\Models\User::PUBLISH ){
                         if( isset( \Auth::user()->type ) && (\Auth::user()->type == \App\Models\User::TYPE_MANAGE) )
                         {
-                            return redirect()->intended('/admin');
+                            return redirect()->intended('/admin/pages');
                         }
                         return redirect()->intended('/tra-cuu');
                     } else {
@@ -119,4 +121,38 @@ class LoginController extends Controller
             return redirect()->route('login')->with('error','Email, Phone hoặc Mật khẩu không đúng.');
         }
     } // End func
+
+    public function logout(Request $request)
+    {
+        \Auth::logout();
+        return redirect()->route('login');
+    }
+
+    public function loginGuest(Request $request)
+    {
+        return view("/auth/loginGuest");
+    }
+
+    public function loginGuestPost(Request $request)
+    {
+        $urlGet = env('API_URL');
+        $user = env('API_USER');
+        $pass = env('API_PASS');
+        $response = Http::withBasicAuth( $user,$pass )->get($urlGet. 'api_getuser',
+            [
+                "clientid"        =>   1000001,
+                "username"        =>   $request['email'],
+                "userpass"        =>   $request['password']
+            ]);
+        $jsonDataUser = $response->json();
+        session_start();
+
+        $_SESSION['username'] = $jsonDataUser['result']['username'];
+        $_SESSION['useremail'] = $jsonDataUser['result']['useremail'];
+        if(!empty($_SESSION['username']))
+        {
+            return redirect()->intended('/tra-cuu');
+        }
+        return view("/auth/loginGuest");
+    }
 }

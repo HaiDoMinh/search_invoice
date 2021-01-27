@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="frontend/css/mobi.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/mmenu-light.css">
     <!-- Styles -->
+
 </head>
 <body>
 <div class="container">
@@ -18,10 +19,14 @@
         <nav id="menumobi">
             <ul>
                 <li class="Selected"><a href="{{ route('SearchlnvoiceController.index') }}">Tra cứu</a></li>
-                <li><a href="{{ route('SearchlnvoiceController.tutorial') }}">Hướng dẫn</a></li>
-                <li><a href="{{ route('SearchlnvoiceController.rules') }} ">Thông tư</a></li>
-                <li><a href="{{ route('SearchlnvoiceController.frequently_asked_questions') }}">Câu hỏi thường gặp</a></li>
-                <li><a href="{{ route('logout') }}">Logout</a></li>
+                @foreach($pages as $item)
+                    <li class="Selected"><a href="{{ $item->slug }}">{{ $item->title }}</a></li>
+                @endforeach
+
+                <?php if( empty($_SESSION['username']) ) { ?>
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                <?php } ?>
+                    <li><a href="{{ route('logout') }}">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -32,10 +37,14 @@
     <div class="menu">
         <ul>
             <li><a href="{{ route('SearchlnvoiceController.index') }}">Tra cứu</a></li>
-            <li><a href="{{ route('SearchlnvoiceController.tutorial') }}">Hướng dẫn</a></li>
-            <li><a href="{{ route('SearchlnvoiceController.rules') }} ">Thông tư</a></li>
-            <li><a href="{{ route('SearchlnvoiceController.frequently_asked_questions') }}">Câu hỏi thường gặp</a></li>
-            <li><a href="{{ route('logout') }}">Logout</a></li>
+            @foreach($pages as $item)
+                <li class="Selected"><a href="{{ $item->slug }}">{{ $item->title }}</a></li>
+            @endforeach
+
+            <?php if( empty($_SESSION['username']) ) { ?>
+                <li><a href="{{ route('loginGuest') }}">Login</a></li>
+            <?php } ?>
+                <li><a href="{{ route('logout') }}">Logout</a></li>
         </ul>
     </div>
 </div>

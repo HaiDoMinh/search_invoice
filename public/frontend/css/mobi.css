@@ -67,10 +67,20 @@
         height: 2px;
         margin: 6px 0;
     }
+    .confim-box{
+        width: 100%;
+        float: none;
+        padding-left: 5px !important;
+    }
+    .invoice-box{
+        width: 100%;
+        float: none;
+    }
+
     #menumobi li{
         clear: both;
     }
-
-
-
+    .right {
+        float: none;
+    }
 }

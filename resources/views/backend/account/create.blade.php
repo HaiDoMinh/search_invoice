@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label>{{ __('Họ và tên') }} <span class="require">(*)</span></label>
                                 <input type="text" class="form-control" name="name"
-                                       id="name" placeholder="{{ __('Tên bài viết') }}..."
+                                       id="name" placeholder="{{ __('Họ và tên') }}..."
                                        value="{{ old('name') }}" required>
                             </div>
                             <div class="form-group">
@@ -59,9 +59,9 @@
                                        id="password" placeholder="Password..." required>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('SĐT') }}</label>
+                                <label>{{ __('email') }}</label>
                                 <input type="email" min="0" class="form-control" name="email"
-                                       id="phone" placeholder="{{ __('Email') }}..."
+                                       id="email" placeholder="{{ __('Email') }}..."
                                        value="{!! old('email') !!}">
                             </div>
                         </div>

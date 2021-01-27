@@ -113,4 +113,5 @@ class User extends Authenticatable
         }
         return 'N/A';
     }
+
 }

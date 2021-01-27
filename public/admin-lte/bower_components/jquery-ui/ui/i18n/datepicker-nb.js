@@ -1,5 +1,5 @@
 /* Norwegian Bokmål initialisation for the jQuery UI date picker plugin. */
-/* Written by Bjørn Johansen (post@bjornjohansen.no). */
+/* Written by Bjørn Johansen (pages@bjornjohansen.no). */
 ( function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
 

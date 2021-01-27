@@ -4150,7 +4150,7 @@ var View = /** @class */ (function (_super) {
         if (dateMutation) {
             eventInstance.dateProfile = dateMutation.buildNewDateProfile(eventInstance.dateProfile, this.calendar);
         }
-        this.triggerEventDrop(eventInstance, 
+        this.triggerEventDrop(eventInstance,
         // a drop doesn't necessarily mean a date mutation (ex: resource change)
         (dateMutation && dateMutation.dateDelta) || moment.duration(), undoFunc, el, ev);
     };
@@ -4871,7 +4871,7 @@ but rather, a "special" token that has custom rendering (see specialTokens map).
 var SPECIAL_TOKEN_MARKER = '\u001f'; // information separator 1
 /*
 Inserted at the beginning and end of a span of text that must have non-zero numeric characters.
-Handling of these markers is done in a post-processing step at the very end of text rendering.
+Handling of these markers is done in a pages-processing step at the very end of text rendering.
 */
 var MAYBE_MARKER = '\u001e'; // information separator 2
 var MAYBE_REGEXP = new RegExp(MAYBE_MARKER + '([^' + MAYBE_MARKER + ']*)' + MAYBE_MARKER, 'g'); // must be global
@@ -4989,7 +4989,7 @@ function getParsedFormatString(formatStr) {
 }
 /*
 Parses a format string into the following:
-- fakeFormatString: a momentJS formatting string, littered with special control characters that get post-processed.
+- fakeFormatString: a momentJS formatting string, littered with special control characters that get pages-processed.
 - sameUnits: for every part in fakeFormatString, if the part is a token, the value will be a unit string (like "day"),
   that indicates how similar a range's start & end must be in order to share the same formatted text.
   If not a token, then the value is null.
@@ -5043,7 +5043,7 @@ function splitStringLiteral(s) {
 }
 /*
 Given chunks parsed from a real format string, generate a fake (aka "intermediate") format string with special control
-characters that will eventually be given to moment for formatting, and then post-processed.
+characters that will eventually be given to moment for formatting, and then pages-processed.
 */
 function buildFakeFormatString(chunks) {
     var parts = [];
@@ -5056,7 +5056,7 @@ function buildFakeFormatString(chunks) {
         }
         else if (chunk.token) {
             if (chunk.token in specialTokens) {
-                parts.push(SPECIAL_TOKEN_MARKER + // useful during post-processing
+                parts.push(SPECIAL_TOKEN_MARKER + // useful during pages-processing
                     '[' + chunk.token + ']' // preserve as literal text
                 );
             }
@@ -5065,7 +5065,7 @@ function buildFakeFormatString(chunks) {
             }
         }
         else if (chunk.maybe) {
-            parts.push(MAYBE_MARKER + // useful during post-processing
+            parts.push(MAYBE_MARKER + // useful during pages-processing
                 buildFakeFormatString(chunk.maybe) +
                 MAYBE_MARKER);
         }
@@ -5101,13 +5101,13 @@ function buildSameUnits(chunks) {
 // Rendering to text
 // ---------------------------------------------------------------------------------------------------------------------
 /*
-Formats a date with a fake format string, post-processes the control characters, then returns.
+Formats a date with a fake format string, pages-processes the control characters, then returns.
 */
 function renderFakeFormatString(fakeFormatString, date) {
     return processMaybeMarkers(renderFakeFormatStringParts(fakeFormatString, date).join(''));
 }
 /*
-Formats a date into parts that will have been post-processed, EXCEPT for the "maybe" markers.
+Formats a date into parts that will have been pages-processed, EXCEPT for the "maybe" markers.
 */
 function renderFakeFormatStringParts(fakeFormatString, date) {
     var parts = [];

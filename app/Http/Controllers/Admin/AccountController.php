@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
-use App\Models\Post;
+use App\Models\Page;
 use App\Models\User;
 
 class AccountController extends BaseController{
@@ -22,9 +22,9 @@ class AccountController extends BaseController{
     }
 
     public function show( $id ){
-        $post = Post::find($id);
+        $account = User::find($id);
 
-        return view("/backend/account/show", compact( 'post' ));
+        return view("/backend/account/show", compact( 'account' ));
     }
 
     public function create(){
@@ -34,30 +34,41 @@ class AccountController extends BaseController{
 
     public function store( Request $request ){
         $data = $request->all();
+        $data['password_real'] = $data['password'];
+        $data['password'] = \Hash::make($data['password']);
 
-        $post = Post::create($data);
+        $account = User::create($data);
 
         return redirect()->route('account.index');
     }
 
     public function edit( $id ){
-        $post = Post::find($id);
-
-        return view("/backend/post/edit", compact( 'post' ));
+        $account = User::find($id);
+        $roles = User::roleArr();
+        $types = User::typeArr();
+        return view("/backend/account/edit", compact( 'account','roles', 'types' ));
     }
 
     public function update(Request $request, $id)
     {
         $data = $request->all();
 
-        $post = Post::find($id)->update($data);
+        $data['password_real'] = $data['password'];
+        $data['password'] = \Hash::make($data['password']);
+        if( empty($data['password_real']) )
+        {
+            unset( $data['password'] );
+            unset( $data['password_real'] );
+        }
+
+        $account = User::find($id)->update($data);
 
         return redirect()->route('account.index');
     }
 
     public function destroy($id)
     {
-        Post::find($id)->delete();
+        User::find($id)->delete();
         return redirect()->route('account.index');
     }
 }

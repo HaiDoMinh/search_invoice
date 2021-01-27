@@ -116,6 +116,9 @@ li a:hover {
 }
 .result {
     text-align: center;
+    margin-top: 10px;
+    font-weight: 600;
+    color: red;
 }
 .result iframe{
     width:600px;
@@ -126,7 +129,7 @@ li a:hover {
     margin-top: 30px;
 }
 .captcha {
-    width: 30%;
+    width: 35%;
     float: left;
     position: absolute;
     border-right: 1px solid;
@@ -141,6 +144,16 @@ li a:hover {
     height: 100%;
 }
 .verification-box {
+    width: 65%;
+    float: right;
+}
+.confim-box{
+    width: 30%;
+    float: left;
+    padding-left: 0 !important;
+}
+.invoice-box{
     width: 70%;
     float: right;
+    /*padding-right: 0 !important;*/
 }

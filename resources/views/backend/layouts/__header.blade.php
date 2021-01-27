@@ -21,7 +21,7 @@
         </div>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                
+
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -35,12 +35,12 @@
                             <img src="@if( !empty( \Auth::user()->image ) ) {!! \Auth::user()->image !!} @else {!! asset('admin-lte/dist') !!}/img/user2-160x160.jpg @endif" class="img-circle"
                                     alt="">
                             <p>
-                                <small>Ngày tạo: </small>
+                                <small>Ngày tạo: @if( !empty( \Auth::user()->created_at ) ) {!! \Auth::user()->created_at !!} @endif</small>
                             </p>
                         </li>
                         <li class="user-footer" style="background: #33b35a">
                             <div class="pull-left">
-                                <a href=""
+                                <a href="{!! route('account.show', ['account' => \Auth::user()->id ]) !!}"
                                     class="btn btn-warning btn-md">Profile</a>
                             </div>
                             <div class="pull-right">

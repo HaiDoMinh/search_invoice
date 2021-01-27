@@ -8,6 +8,9 @@
     <title>HLNC-CMS | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{!! asset('admin-lte/bower_components/bootstrap/dist/css/bootstrap.min.css') !!}">
     <!-- Font Awesome -->
@@ -31,11 +34,14 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{!! asset('admin-lte/dist/css/AdminLTE.min.css') !!}">
 
+    <link rel="stylesheet" href="{!! asset('backend/css/custom.css') !!}">
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-    @yield('stylesheet')
 
+
+    @yield('stylesheet')
+{{--    <link rel="stylesheet" type="text/css" href="{!! asset('common/bootrap/css/bootstrap.min.css') !!}">--}}
 </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -88,6 +94,11 @@
         <script src="{!! asset('admin-lte/dist/js/adminlte.min.js') !!}"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="{!! asset('admin-lte/dist/js/pages/dashboard.js') !!}"></script>
+        <script src="{!! asset('common/ckeditor/ckeditor.js') !!}"></script>
+
+        <script>
+            CKEDITOR.replaceClass= "ckediter";
+        </script>
         @yield('scripts')
 
     </body>

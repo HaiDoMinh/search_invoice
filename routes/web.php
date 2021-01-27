@@ -16,23 +16,21 @@ use App\Http\Controllers\CaptchaServiceController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/reload-captcha-code', 'CaptchaServiceController@captcha')->name('CaptchaServiceController.reloadCaptchaCode');
 Route::get('/tra-cuu', 'FrontEnd\SearchlnvoiceController@index')->name('SearchlnvoiceController.index');
-//Route::post('/tra-cuu-hd', 'SearchlnvoiceController@searchInvoice')->name('SearchlnvoiceController.searchInvoice');
 Route::get('/tra-cuu-hd', 'FrontEnd\SearchlnvoiceController@searchInvoice')->name('SearchlnvoiceController.searchInvoice');
-Route::get('/huong-dan', 'FrontEnd\SearchlnvoiceController@tutorial')->name('SearchlnvoiceController.tutorial');
-Route::get('/thong-tu', 'FrontEnd\SearchlnvoiceController@rules')->name('SearchlnvoiceController.rules');
-Route::get('/cau-hoi-thuong-gap', 'FrontEnd\SearchlnvoiceController@frequently_asked_questions')
-       ->name('SearchlnvoiceController.frequently_asked_questions');
-Route::get('/test-tra-cuu','FrontEnd\SearchlnvoiceController@show')->name('SearchlnvoiceController.show');
-
-Route::get('/reload-captcha-code', 'CaptchaServiceController@reloadCaptchaCode')->name('CaptchaServiceController.reloadCaptchaCode');
 
 Auth::routes();
 
-Route::resource('post', 'Admin\PostController');
-Route::resource('account', 'Admin\AccountController');
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
+{
+    Route::resource('pages', 'Admin\PagesController');
+    Route::resource('account', 'Admin\AccountController');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/login-guest', 'Auth\LoginController@loginGuest')->name('loginGuest');
+Route::post('/login-guest', 'Auth\LoginController@loginGuestPost')->name('loginGuestPost');
 Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('{url}', 'FrontEnd\SearchlnvoiceController@page')->name('SearchlnvoiceController.page');
