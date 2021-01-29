@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('header')</title>
-    <link rel="stylesheet" type="text/css" href="common/bootrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="frontend/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="frontend/css/mobi.css">
-    <link rel="stylesheet" type="text/css" href="frontend/css/mmenu-light.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('common/bootrap/css/bootstrap.min.css') }} ">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/mobi.css') }} ">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/mmenu-light.css')}}">
     <!-- Styles -->
 
 </head>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="logo">
-        <img src="img/logo.png" alt="logo">
+        <img src="{{ asset('img/logo.png')}}" alt="logo">
     </div>
     <div class="menu">
         <ul>
@@ -88,9 +88,9 @@
     </div>
 </div>
 
-<script src="common/jquery/jquery-3.5.1.min.js"></script>
-<script src="common/bootrap/js/bootstrap.min.js"></script>
-<script src="frontend/js/mmenu-light.js"></script>
+<script src="{{ asset('common/jquery/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ asset('common/bootrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('frontend/js/mmenu-light.js') }}"></script>
 <script>
     var menu = new MmenuLight(
         document.querySelector( '#menumobi' ),

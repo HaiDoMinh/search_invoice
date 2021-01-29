@@ -48,7 +48,8 @@
             <div class="result col-md-8"></div>
             <div class="model-button-box col-md-4">
                 <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-info btn-lg btn-open" >Hóa đơn</button>
+{{--                btn btn-info btn-lg--}}
+                <button type="button" class="btn btn-primary btl-lg btn-open" >Hóa đơn</button>
             </div>
         </div>
     </div>
@@ -131,7 +132,7 @@
                     $cusinvoicename = '<p>Đơn vị bán hàng: ' +  data['data']['result']['cusinvoicename'] + '</p>';
                     $taxid = '<p>Số fax: ' +  data['data']['result']['taxid'] + '</p>';
                     $address = '<p>Địa chỉ: ' +  data['data']['result']['address'] + '</p>';
-                    $grandtotal = '<p>Tổng tiền: ' +  data['data']['result']['grandtotal'] + 'VNĐ</p>';
+                    $grandtotal = '<p>Tổng tiền: ' +  formatNumber(data['data']['result']['grandtotal']) + ' VNĐ</p>';
 
                     $(".result").append($cusinvoicename, $taxid, $address, $grandtotal);
                 }else {
@@ -144,5 +145,10 @@
             }
         });
     });
+
+    function formatNumber (num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+    }
+
 </script>
 @endsection

@@ -200,6 +200,11 @@ li a:hover {
     margin-top: 20px;
     display: none;
 }
+.model-button-box button{
+    height: 55px;
+    width: 50%;
+    text-transform: uppercase;
+}
 
 .page404{
     background-image: url('/img/bg2.jpeg');

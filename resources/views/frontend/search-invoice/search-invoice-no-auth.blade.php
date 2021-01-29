@@ -52,7 +52,7 @@
             <div class="result col-md-8"></div>
             <div class="model-button-box col-md-4">
                 <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-info btn-lg btn-open" >Hóa đơn</button>
+                <button type="button" class="btn btn-primary btl-lg btn-open" >Hóa đơn</button>
             </div>
         </div>
     </div>
