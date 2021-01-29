@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Page;
 use App\Models\User;
+use Validator;
 
 class AccountController extends BaseController{
 
@@ -33,6 +34,25 @@ class AccountController extends BaseController{
     }
 
     public function store( Request $request ){
+
+        $rules = [
+            'email' => 'required|unique:users',
+            'password' => 'required|min:6'
+        ];
+        $messages = [
+            'email.required' => 'Email Không được để trống',
+            'email.unique' => 'Email đã tồn tại',
+            'password.min' => 'Mật khẩu phải chứa ít nhất 6 ký tự',
+            'password.required' => 'Mật khẩu là trường bắt buộc',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        $input = $request->all();
+
+        if ($validator->fails()) {
+            return redirect()->route('account.create', ['input' => $input])->withErrors($validator);
+        }
+
         $data = $request->all();
         $data['password_real'] = $data['password'];
         $data['password'] = \Hash::make($data['password']);
@@ -51,17 +71,22 @@ class AccountController extends BaseController{
 
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $account = User::where("email", $request['email'])->where("id", "!=", $id)->first();
+        if (!empty($account)) {
+            return redirect()->route('account.edit', ['account' => $id])->with('error', 'Email đã tồn tại.');
+        }else {
+            $data = $request->all();
 
-        $data['password_real'] = $data['password'];
-        $data['password'] = \Hash::make($data['password']);
-        if( empty($data['password_real']) )
-        {
-            unset( $data['password'] );
-            unset( $data['password_real'] );
+            $data['password_real'] = $data['password'];
+            $data['password'] = \Hash::make($data['password']);
+            if( empty($data['password_real']) )
+            {
+                unset( $data['password'] );
+                unset( $data['password_real'] );
+            }
+
+            $account = User::find($id)->update($data);
         }
-
-        $account = User::find($id)->update($data);
 
         return redirect()->route('account.index');
     }

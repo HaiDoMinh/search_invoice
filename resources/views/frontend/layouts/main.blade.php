@@ -20,7 +20,7 @@
             <ul>
                 <li class="Selected"><a href="{{ route('SearchlnvoiceController.index') }}">Tra cứu</a></li>
                 @foreach($pages as $item)
-                    <li class="Selected"><a href="{{ $item->slug }}">{{ $item->title }}</a></li>
+                    <li><a href="{{ $item->slug }}">{{ $item->title }}</a></li>
                 @endforeach
 
                 <?php if( empty($_SESSION['username']) ) { ?>
@@ -36,12 +36,12 @@
     </div>
     <div class="menu">
         <ul>
-            <li><a href="{{ route('SearchlnvoiceController.index') }}">Tra cứu</a></li>
+            <li class="Selected"><a href="{{ route('SearchlnvoiceController.index') }}">Tra cứu</a></li>
             @foreach($pages as $item)
-                <li class="Selected"><a href="{{ $item->slug }}">{{ $item->title }}</a></li>
+                <li><a href="{{ $item->slug }}">{{ $item->title }}</a></li>
             @endforeach
 
-            <?php if( empty($_SESSION['username']) ) { ?>
+            <?php if( empty( \Auth::user() ) && empty( $_SESSION['username'] ) ) { ?>
                 <li><a href="{{ route('loginGuest') }}">Login</a></li>
             <?php } ?>
                 <li><a href="{{ route('logout') }}">Logout</a></li>
@@ -55,18 +55,24 @@
     <div class="container">
         <div class="row footer">
             <div class="col-md-4">
-                <img src="img/a.png" alt="logo">
+                <a href="#">
+                    <img src="{{ asset('img/a.png') }}" alt="logo"/>
+                </a>
                 <h4>Hỗ trợ khách hàng</h4>
                 <span>Tổng đài: 1900-6154</span>
             </div>
             <div class="col-md-4">
-                <img src="img/b.png" alt="logo">
+                <a href="#">
+                    <img src="{{ asset('img/b.png') }}" alt="logo"/>
+                </a>
                 <h4>Chăm sóc khách hàng</h4>
                 <p>(+84) 435 149 016</p>
                 <p>Email: support@sts.vn</p>
             </div>
             <div class="col-md-4">
-                <img src="img/c.png" alt="logo">
+                <a href="#">
+                    <img src="{{ asset('img/c.png') }}" alt="logo"/>
+                </a>
                 <h4>Tư vấn dịch vụ</h4>
                 <p>(028)-3866-4188</p>
                 <p>Email: contact@sts.vn</p>

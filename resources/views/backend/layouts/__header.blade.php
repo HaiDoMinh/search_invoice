@@ -26,14 +26,14 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="@if( !empty( \Auth::user()->image ) ) {!! \Auth::user()->image !!} @else {!! asset('admin-lte/dist') !!}/img/user2-160x160.jpg @endif" class="user-image"
-                                alt="">
+                                alt="avatar user">
                         <span class="hidden-xs"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
                             <img src="@if( !empty( \Auth::user()->image ) ) {!! \Auth::user()->image !!} @else {!! asset('admin-lte/dist') !!}/img/user2-160x160.jpg @endif" class="img-circle"
-                                    alt="">
+                                    alt="avatar user">
                             <p>
                                 <small>Ngày tạo: @if( !empty( \Auth::user()->created_at ) ) {!! \Auth::user()->created_at !!} @endif</small>
                             </p>

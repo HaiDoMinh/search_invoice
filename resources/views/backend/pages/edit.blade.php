@@ -51,7 +51,7 @@
                                 </div>
                             @endif
                             <div class="form-group">
-                                <label>{{ __('Tiêu đề bài viế') }} <span class="require">(*)</span></label>
+                                <label>{{ __('Tiêu đề bài viết') }} <span class="require">(*)</span></label>
                                 <input type="text" class="form-control" name="title"
                                        id="title" placeholder="{{ __('Tên bài viết') }}..."
                                        value="{!! $page->title !!}" required>

@@ -13,7 +13,7 @@
             @csrf
             <div class="form-group has-feedback">
                 <input id="email" type="text" class="form-control @if( session('error') ) is-invalid @endif"
-                    placeholder="{{ __('Email hoặc Số Điện thoại') }}..."
+                    placeholder="{{ __('Tên đăng nhập') }}..."
                     name="email" value='@if( isset( $_GET["email"] ) ) {{ $_GET["email"] }} @endif'
                     required autocomplete="on" autofocus>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -24,10 +24,10 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                @if( session('error') )
+                @if( session('errorGuest') )
                     <span class="invalid-feedback mess-danger" role="alert">
                         {{ _('Đăng nhập lỗi!') }}<br />
-                        {{ \Session::get('error') }}
+                        {{ \Session::get('errorGuest') }}
                     </span>
                 @endif
             </div>

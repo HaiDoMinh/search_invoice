@@ -28,8 +28,17 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <form method="POST" action="{!! route('account.store') !!}" enctype="multipart/form-data">
+            <form method="POST" action="{!! route('account.update', ['account' => $account->id]) !!}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                <input type="hidden" name="_method" value="PUT">
+                @if( session('error') )
+                    <div class="form-group has-feedback alert alert-danger">
+                        <span class="invalid-feedback mess-danger" role="alert">
+                            {{ _('Cập nhật lỗi!') }}<br />
+                            {{ \Session::get('error') }}
+                        </span>
+                    </div>
+                @endif
                 <!-- left column -->
                 <div class="col-md-6">
                     <!-- general form elements -->
@@ -54,7 +63,7 @@
                                        value="{!! $account->phone !!}">
                             </div>
                             <div class="form-group">
-                                <label>Mật khẩu <span>(*)</span></label>
+                                <label>Mật khẩu <span class="require">(*)</span></label>
                                 <input type="password" class="form-control" name="password"
                                        id="password" placeholder="Password...">
                             </div>
@@ -82,25 +91,40 @@
                         <!-- form start -->
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Trạng thái</label>
+                                <label>{{ __('Trạng thái') }}</label>
                                 <select class="form-control" name="status">
-                                    <option value="<?= \App\Models\User::PUBLISH ?>">Hoạt động</option>
-                                    <option value="<?= \App\Models\User::PENDING ?>">Ngừng hoạt động</option>
+                                    @if( !empty( \App\Models\User::statusLabelArr() ) )
+                                        @foreach( \App\Models\User::statusLabelArr() as $key => $item )
+                                            <option @if( $key == $account->status ) selected @endif
+                                            value="{!! $key !!}">
+                                                {!! $item !!}
+                                            </option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Hình thức</label>
+                                <label>{{ __('Hình thức') }}</label>
                                 <select class="form-control" name="type">
-                                    <option value="<?= \App\Models\User::TYPE_PC ?>">Người dùng PC</option>
-                                    <option value="<?= \App\Models\User::TYPE_MANAGE ?>">Người dùng Manage</option>
+                                    @if( !empty( \App\Models\User::typeArr() ) )
+                                        @foreach( \App\Models\User::typeArr() as $key => $item )
+                                            <option @if( $key == $account->type ) selected @endif
+                                            value="{!! $key !!}">
+                                                {!! $item !!}
+                                            </option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Vai trò</label>
+                                <label>{{ __('Vai trò') }}</label>
                                 <select class="form-control" name="role">
-                                    @if( !empty( $roles ) )
-                                        @foreach( $roles as $key => $role )
-                                            <option value="{!! $key !!}">{!! $role !!}</option>
+                                    @if( !empty( \App\Models\User::roleArr() ) )
+                                        @foreach( \App\Models\User::roleArr() as $key => $item )
+                                            <option @if( $key == $account->role ) selected @endif
+                                            value="{!! $key !!}">
+                                                {!! $item !!}
+                                            </option>
                                         @endforeach
                                     @endif
                                 </select>

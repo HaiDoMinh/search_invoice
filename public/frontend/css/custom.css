@@ -52,7 +52,7 @@ li a:hover {
     filter: brightness(90%);
 }
 .content-search-invoice h1{
-    padding-top: 10%;
+    padding-top: 8%;
     color: white;
     font-weight: 600;
     font-size: 60px;
@@ -115,7 +115,6 @@ li a:hover {
      margin: 0;
 }
 .result {
-    text-align: center;
     margin-top: 10px;
     font-weight: 600;
     color: red;
@@ -125,8 +124,15 @@ li a:hover {
     height:800px;
     margin-top: 30px;
 }
-.result span{
+.result-error{
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 600;
+    color: red;
+}
+.result-error span{
     margin-top: 30px;
+    color: red;
 }
 .captcha {
     width: 35%;
@@ -155,5 +161,93 @@ li a:hover {
 .invoice-box{
     width: 70%;
     float: right;
-    /*padding-right: 0 !important;*/
+}
+
+.modal-body{
+    text-align: center;
+}
+.modal-body span{
+    color: red;
+}
+.modal-body iframe{
+    width:600px;
+    height:800px;
+}
+.modal-dialog {
+     max-width: 100%;
+}
+.modal-content{
+    margin-left: 10px
+}
+.modal-header img {
+    max-width: 140px;
+    margin: 0 40px;
+    height: 40px;
+}
+.show-logo img
+{
+    background: #fff;
+    max-width: 140px;
+    margin: 35px 30px;
+    height: 25px
+}
+.result p{
+    color: black;
+    margin-bottom: 1px;
+}
+.model-button-box {
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+.page404{
+    background-image: url('/img/bg2.jpeg');
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    height: 500px; /* You must set a specified height */
+    width: 100%;
+    text-align: center;
+    clear: both;
+    filter: brightness(90%);
+}
+.page404 h1{
+    text-align: center;
+    padding-top: 10%;
+    color: white;
+    font-weight: 600;
+    font-size: 60px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+#loading {
+    background-color:white;
+    position: fixed;
+    display: block;
+    top: 0;
+    bottom: 0;
+    z-index: 1000000;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#loading img {
+    margin: auto;
+    display: block;
+    top: 30%;
+    left: 35%;
+    /*top: calc(50% - 100px);*/
+    /*left: calc(50% - 10px);*/
+    position: absolute;
+    z-index: 999999;
+}
+
+.image-box{
+    margin: 20px 0px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.7;
 }

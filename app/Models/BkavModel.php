@@ -28,26 +28,28 @@ class BkavModel extends Model
             $out = json_decode($out, true);
             $pdf = json_decode($out['Object'], true);
 
-            echo '<iframe src="data:application/pdf;base64,' . $pdf['PDF'] . '"></iframe>';
+            $output = $pdf['PDF'];
         }
         return $output;
     }
     public function GetDataInvoiceInfo($docno, $user, $pass, $urlGet, $confimCode)
     {
-        if( empty( Auth::user() ) ) {
+        if ( !empty($_SESSION['username']) || !empty( Auth::user() ))
+        {
+            $response = Http::withBasicAuth($user, $pass)
+                ->get($urlGet . 'api_geteinvoiceinfo',
+                    [
+                        "docno" => urldecode(strtoupper($docno))
+                    ]);
+        } else {
             $response = Http::withBasicAuth($user, $pass)
                 ->get($urlGet . 'api_geteinvoicemtc',
                     [
                         "docno" => urldecode(strtoupper($docno)),
                         "mtckey" => urldecode($confimCode)
                     ]);
-        } else {
-            $response = Http::withBasicAuth($user, $pass)
-                ->get($urlGet . 'api_geteinvoiceinfo',
-                    [
-                        "docno" => urldecode(strtoupper($docno))
-                    ]);
         }
+
         $jsonDataInvoiceInfo = $response->json();
 
         return $jsonDataInvoiceInfo;
@@ -57,7 +59,6 @@ class BkavModel extends Model
     {
         $status = true;
         $jsonDataInvoiceInfo = $this->GetDataInvoiceInfo($docno, $user, $pass, $urlGet, $confimCode);
-
         if( !empty($jsonDataInvoiceInfo['errorCode'] ))
         {
             $status = false;
@@ -95,8 +96,8 @@ class BkavModel extends Model
         $client = new SoapClient( $jsonDataWsInfo['result'][0]['ehoadonsoap_address'] . '?WSDL' );
         $response = $client->ExecCommand($requestParams);
 
-        $this->encryptDecrypt('decrypt', $response->ExecCommandResult, $key, $iv );
+        $jsonDataInvoiceInfo['pdf'] = $this->encryptDecrypt('decrypt', $response->ExecCommandResult, $key, $iv );
 
-        return $status;
+        return $jsonDataInvoiceInfo;
     }
 }

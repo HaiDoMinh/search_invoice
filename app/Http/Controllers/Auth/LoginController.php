@@ -153,6 +153,8 @@ class LoginController extends Controller
         {
             return redirect()->intended('/tra-cuu');
         }
-        return view("/auth/loginGuest");
+
+        return redirect()->route('loginGuest')->with('errorGuest', 'Tài khoản không đúng.');
+//        return view("/auth/loginGuest")->with('errorGuest','Tài khoản không đúng.');;
     }
 }

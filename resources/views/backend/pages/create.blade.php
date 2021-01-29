@@ -31,7 +31,19 @@
             <form method="POST" action="{!! route('pages.store') !!}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                 <!-- left column -->
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="col-md-9">
+
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
@@ -40,15 +52,6 @@
                         <!-- /.box-header -->
 
                         <!-- form start -->
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <div class="box-body">
                             <div class="form-group">
                                 <label>{{ __('Tiêu đề bài viết') }} <span class="require">(*)</span></label>

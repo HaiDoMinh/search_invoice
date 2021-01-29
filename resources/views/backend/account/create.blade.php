@@ -31,6 +31,16 @@
             <form method="POST" action="{!! route('account.store') !!}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                 <!-- left column -->
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="box box-primary">
@@ -54,7 +64,7 @@
                                           value="{!! old('phone') !!}">
                             </div>
                             <div class="form-group">
-                                <label>Mật khẩu <span>(*)</span></label>
+                                <label>Mật khẩu <span class="require">(*)</span></label>
                                 <input type="password" class="form-control" name="password"
                                        id="password" placeholder="Password..." required>
                             </div>
