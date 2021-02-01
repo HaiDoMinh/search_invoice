@@ -23,11 +23,7 @@ class IsAdmin
             return redirect('/login');
         }
 
-        if( Auth::user()->type == User::TYPE_PC ){
-            return redirect('/tra-cuu');
-        }
-
-        if( Auth::user()->type == User::TYPE_MANAGE ){
+        if( Auth::user() ){
             return $next($request);
         }
     }

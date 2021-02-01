@@ -117,7 +117,7 @@ li a:hover {
 }
 .result {
     margin-top: 10px;
-    font-weight: 600;
+    /*font-weight: 600;*/
     color: red;
 }
 .result iframe{
@@ -194,7 +194,7 @@ li a:hover {
 }
 .result p{
     color: black;
-    margin-bottom: 1px;
+    margin-bottom: 10px;
 }
 .model-button-box {
     text-align: center;

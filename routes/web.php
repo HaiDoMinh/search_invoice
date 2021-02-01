@@ -14,7 +14,7 @@ use App\Http\Controllers\CaptchaServiceController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('loginGuest');
+    return redirect()->route('SearchlnvoiceController.index');
 });
 Route::get('/reload-captcha-code', 'CaptchaServiceController@captcha')->name('CaptchaServiceController.reloadCaptchaCode');
 Route::get('/tra-cuu', 'FrontEnd\SearchlnvoiceController@index')->name('SearchlnvoiceController.index');
@@ -32,6 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/login-guest', 'Auth\LoginController@loginGuest')->name('loginGuest');
 Route::post('/login-guest', 'Auth\LoginController@loginGuestPost')->name('loginGuestPost');
+Route::get('/logout-guest', 'Auth\LoginController@logoutGuest')->name('logoutGuest');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/404-page', 'FrontEnd\SearchlnvoiceController@page404')->name('SearchlnvoiceController.404');
 

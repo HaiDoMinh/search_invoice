@@ -113,8 +113,6 @@
         var verification = $('#verification-code').val();
         var confimCode = $('#confim-code').val();
 
-        $(this).closest('.form-row').find('img').attr('src', 'reload-captcha-code');
-
         $(".model-button-box").css("display", "none");
         $(".result-error span").remove();
         $(".result p").remove();
@@ -142,15 +140,18 @@
                     $grandtotal = '<p>Tổng tiền: ' +  data['data']['result']['grandtotal'] + 'VNĐ</p>';
 
                     $(".result").append($cusinvoicename, $taxid, $address, $grandtotal);
+
                 }else {
                     $msg = '<span>'+ data['msg'] + '</span>';
                     $(".result-error").append($msg);
                 }
+                $('#reload').find('img').attr('src', 'reload-captcha-code');
             },
             error: function (data) {
                // console.log(data);
             }
         });
+        //$(this).closest('.form-row').find('img').attr('src', 'reload-captcha-code');
     });
 </script>
 @endsection

@@ -9,13 +9,13 @@
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigation</span>
-        </a>
+{{--        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">--}}
+{{--            <span class="sr-only">Toggle navigation</span>--}}
+{{--        </a>--}}
         <div class="dasboard_brand">
             <a href="" class="navbar-brand">
                 <div class="brand-text d-none d-md-inline-block">
-                    <strong class="text-primary">{!! date('d/m/Y l') !!}</strong>
+                    <strong class="">{!! date('d/m/Y l') !!}</strong>
                 </div>
             </a>
         </div>

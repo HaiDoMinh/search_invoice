@@ -21,6 +21,8 @@ use Validator;
 use Auth;
 use Mail;
 
+session_start();
+
 class LoginController extends Controller
 {
     /*
@@ -145,7 +147,7 @@ class LoginController extends Controller
                 "userpass"        =>   $request['password']
             ]);
         $jsonDataUser = $response->json();
-        session_start();
+        //session_start();
 
         $_SESSION['username'] = $jsonDataUser['result']['username'];
         $_SESSION['useremail'] = $jsonDataUser['result']['useremail'];
@@ -155,6 +157,17 @@ class LoginController extends Controller
         }
 
         return redirect()->route('loginGuest')->with('errorGuest', 'Tài khoản không đúng.');
-//        return view("/auth/loginGuest")->with('errorGuest','Tài khoản không đúng.');;
+    }
+
+    public function logoutGuest(Request $request)
+    {
+
+        if( !empty($_SESSION['username']) ) {
+            unset($_SESSION['username']);
+            unset($_SESSION['useremail']);
+
+            return redirect()->route('SearchlnvoiceController.index');
+        }
+        //return redirect()->route('SearchlnvoiceController.index');
     }
 }

@@ -24,9 +24,9 @@
                 @endforeach
 
                 <?php if( empty($_SESSION['username']) ) { ?>
-                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('loginGuest') }}">Đăng nhập</a></li>
                 <?php } ?>
-{{--                    <li><a href="{{ route('logout') }}">Logout</a></li>--}}
+                    <li><a href="{{ route('logoutGuest') }}">Đăng xuất</a></li>
             </ul>
         </nav>
     </div>
@@ -43,8 +43,9 @@
 
             <?php if( empty( \Auth::user() ) && empty( $_SESSION['username'] ) ) { ?>
                 <li><a href="{{ route('loginGuest') }}">Đăng nhập</a></li>
+            <?php } else { ?>
+                <li><a href="{{ route('logoutGuest') }}">Đăng xuất</a></li>
             <?php } ?>
-{{--                <li><a href="{{ route('logout') }}">Logout</a></li>--}}
         </ul>
     </div>
 </div>

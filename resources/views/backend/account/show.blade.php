@@ -6,7 +6,7 @@
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>{{ __('Tạo mới') }}</h1>
+        <h1>{{ __('Thông tin tài khoản') }}</h1>
         <div>
             <small>
                 <a class="btn btn-primary btn-sm"
@@ -147,14 +147,6 @@
                 <!-- /.box -->
             </div>
 
-            <!--/.col (left) -->
-            <div class="col-md-12 box-footer">
-                <button type="submit" class="btn btn-lg btn-success pull-right">
-                    <i class="fa fa-save"></i>
-                    <span>{{ __('Lưu tạo mới') }}</span>
-                </button>
-            </div>
-            <!--/.col (right) -->
         </div>
         <!-- /.row -->
     </section>

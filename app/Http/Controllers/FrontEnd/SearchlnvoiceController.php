@@ -24,6 +24,7 @@ class SearchlnvoiceController extends BaseController
 
     public function searchInvoice( Request $request )
     {
+
         $result = ['success'=>false, 'msg' => 'Error'];
         $docno = $request['docno'];
         $confimCode = $request['confimCode'];

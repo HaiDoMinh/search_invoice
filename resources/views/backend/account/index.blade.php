@@ -30,7 +30,7 @@
                     <div class="box-header block-search">
                         <form action="" method="GET">
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>{!! __('Tìm theo tên tài khoản') !!}</label>
                                         <input type="text" name="search_text" style="float: left;width: 100%;" class="form-control"
