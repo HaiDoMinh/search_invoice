@@ -14,7 +14,7 @@ use App\Http\Controllers\CaptchaServiceController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('loginGuest');
 });
 Route::get('/reload-captcha-code', 'CaptchaServiceController@captcha')->name('CaptchaServiceController.reloadCaptchaCode');
 Route::get('/tra-cuu', 'FrontEnd\SearchlnvoiceController@index')->name('SearchlnvoiceController.index');

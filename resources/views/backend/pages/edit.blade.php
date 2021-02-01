@@ -37,7 +37,7 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{ __('Nội dung bài viết') }}</h3>
+                            <h3 class="box-title">{{ __('Nội dung page') }}</h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
@@ -51,15 +51,15 @@
                                 </div>
                             @endif
                             <div class="form-group">
-                                <label>{{ __('Tiêu đề bài viết') }} <span class="require">(*)</span></label>
+                                <label>{{ __('Tiêu đề page') }} <span class="require">(*)</span></label>
                                 <input type="text" class="form-control" name="title"
-                                       id="title" placeholder="{{ __('Tên bài viết') }}..."
+                                       id="title" placeholder="{{ __('Tiêu đề page') }}..."
                                        value="{!! $page->title !!}" required>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('Nội dung bài viết') }}</label>
+                                <label>{{ __('Nội dung page') }}</label>
                                 <textarea type="text" min="0" class="ckediter form-control" name="content"
-                                          id="content" placeholder="{{ __('Nội dung bài viết') }}..."
+                                          id="content" placeholder="{{ __('Nội dung page') }}..."
                                           value="{!! $page->content !!}">{!! $page->content !!}</textarea>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{ __('Thông tin bài viết') }}</h3>
+                            <h3 class="box-title">{{ __('Thông tin page') }}</h3>
                         </div>
                         <!-- /.box-header -->
 
@@ -103,7 +103,7 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">{{ __('Thông tin Khác') }}</h3>
+                            <h3 class="box-title">{{ __('Thông tin khác') }}</h3>
                         </div>
                         <!-- /.box-header -->
 

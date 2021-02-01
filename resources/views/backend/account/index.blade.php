@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label>{!! __('Tìm theo tên tài khoản') !!}</label>
                                         <input type="text" name="search_text" style="float: left;width: 100%;" class="form-control"
-                                            placeholder="Nhập Tên bài viết để tìm kiếm..." value="{!! $request->get('search_text') !!}">
+                                            placeholder="Nhập tên để tìm kiếm..." value="{!! $request->get('search_text') !!}">
                                     </div>
                                 </div>
                                 <div class="col-md-2 col-sm-12">
@@ -73,8 +73,8 @@
                                             <td data-title="Họ và tên">{!! $item->name !!}</td>
                                             <td data-title="Email">{!! $item->email !!}</td>
                                             <td data-title="Trạng thái">{!! $item->statusLabelShow() !!}</td>
-                                            <td data-title="Role">{!! $item->roleShow() !!}</td>
-                                            <td data-title="Type">{!! $item->typeShow() !!}</td>
+                                            <td data-title="Vai trò">{!! $item->roleShow() !!}</td>
+                                            <td data-title="Hình thức">{!! $item->typeShow() !!}</td>
                                             <td data-title="Ngày tạo">{!! !empty($item->created_at) ? date('d/m/Y', strtotime($item->created_at)) : '' !!}</td>
 											<td data-title="Ngày cập nhật">{!! !empty($item->updated_at) ? date('d/m/Y', strtotime($item->updated_at)) : '' !!}</td>
                                             <td data-title="Thao tác">

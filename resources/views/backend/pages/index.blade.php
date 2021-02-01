@@ -67,7 +67,7 @@
                                     @foreach( $pages as $item )
                                         <tr>
                                             <td data-title="ID">{!! $item->id !!}</td>
-                                            <td data-title="Tên bài viết">{!! $item->title !!}</td>
+                                            <td data-title="Tên bài page">{!! $item->title !!}</td>
                                             <td data-title="Trạng thái">{!! $item->statusLabelShow() !!}</td>
                                             <td data-title="Ngày tạo">{!! !empty($item->created_at) ? date('d/m/Y', strtotime($item->created_at)) : '' !!}</td>
 											<td data-title="Ngày cập nhật">{!! !empty($item->updated_at) ? date('d/m/Y', strtotime($item->updated_at)) : '' !!}</td>
