@@ -144,6 +144,7 @@
         $(".model-button-box").css("display", "none");
         $(".result").css("display", "none");
         $(".result-error span").remove();
+        $(".modal-body iframe").remove();
 
         $.ajax({
             type: 'GET',

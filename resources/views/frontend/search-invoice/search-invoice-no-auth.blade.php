@@ -149,6 +149,7 @@
         $(".model-button-box").css("display", "none");
         $(".result").css("display", "none");
         $(".result-error span").remove();
+        $(".modal-body iframe").remove();
 
         $.ajax({
             type: 'GET',
@@ -166,6 +167,7 @@
                     $(".modal-body").append($datapdf);
                     $(".model-button-box").css("display", "block");
                     var $input = data['data']['result'];
+                    $(".result-error span").remove();
 
                     $("#invoiceprefix").append(chekInfor( $input['invoiceprefix'] ));
                     $("#invoiceno").append(chekInfor( $input['invoiceno'] ));
@@ -188,7 +190,6 @@
                // console.log(data);
             }
         });
-        //$(this).closest('.form-row').find('img').attr('src', 'reload-captcha-code');
     });
 
     function formatNumber (num) {
