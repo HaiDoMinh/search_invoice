@@ -6,7 +6,7 @@
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>{{ __('Tạo mới') }}</h1>
+        <h1>{{ __('Cập nhật tài khoản') }}</h1>
         <div>
             <small>
                 <a class="btn btn-primary btn-sm"

@@ -23,9 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        return view('home');
-     //   dd('111');
-      //  return redirect()->route('SearchlnvoiceController.index');
         return redirect()->route('pages.index');
     }
 }

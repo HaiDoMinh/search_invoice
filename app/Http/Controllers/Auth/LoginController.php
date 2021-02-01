@@ -62,6 +62,7 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+
         $rules = [
             'email' => 'required',
             'password' => 'required|min:6'
@@ -161,13 +162,11 @@ class LoginController extends Controller
 
     public function logoutGuest(Request $request)
     {
-
         if( !empty($_SESSION['username']) ) {
+
             unset($_SESSION['username']);
             unset($_SESSION['useremail']);
-
-            return redirect()->route('SearchlnvoiceController.index');
         }
-        //return redirect()->route('SearchlnvoiceController.index');
+        return redirect()->route('SearchlnvoiceController.index');
     }
 }

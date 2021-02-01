@@ -43,14 +43,47 @@
     </div>
     <div class="container">
         <div class="result-error"></div>
-
-        <div class="row">
-            <div class="result col-md-8"></div>
-            <div class="model-button-box col-md-4">
-                <!-- Trigger the modal with a button -->
-{{--                btn btn-info btn-lg--}}
-                <button type="button" class="btn btn-primary btl-lg btn-open" >Hóa đơn</button>
+        <div class="result">
+            <h4>THÔNG TIN HÓA ĐƠN</h4>
+            <div class="form-group">
+                <label>Mẫu số: </label>
+                <p id ="invoiceprefix"></p>
+                <div class="clear"></div>
             </div>
+            <div class="form-group">
+                <label>Số hóa đơn: </label>
+                <p id ="invoiceno"></p>
+                <div class="clear"></div>
+            </div>
+            <div class="form-group">
+                <label>Người mua: </label>
+                <p id ="buyername"></p>
+                <div class="clear"></div>
+            </div>
+            <div class="form-group">
+                <label>Đơn vị bán hàng: </label>
+                <p id ="cusinvoicename"></p>
+                <div class="clear"></div>
+            </div>
+            <div class="form-group">
+                <label>Mã số thuế: </label>
+                <p id ="taxid"></p>
+                <div class="clear"></div>
+            </div>
+            <div class="form-group">
+                <label>Địa chỉ: </label>
+                <p id ="address"></p>
+                <div class="clear"></div>
+            </div>
+            <div class="form-group">
+                <label>Tổng tiền: </label>
+                <p id ="grandtotal"></p>
+                <div class="clear"></div>
+            </div>
+
+            <button type="button" class="btn btn-primary btl-lg btn-open" >
+                <i class="fa fa-print" aria-hidden="true"></i> In hóa đơn
+            </button>
         </div>
     </div>
 
@@ -107,12 +140,10 @@
     $('#search').click(function () {
         var docno = $(this).closest('.form-row').find('.invoice-code').val();
         var verification = $('#verification-code').val();
-        $(this).closest('.form-row').find('img').attr('src', 'reload-captcha-code');
 
         $(".model-button-box").css("display", "none");
+        $(".result").css("display", "none");
         $(".result-error span").remove();
-        $(".result p").remove();
-        $(".modal-body iframe").remove();
 
         $.ajax({
             type: 'GET',
@@ -128,17 +159,24 @@
                     $datapdf = '<iframe src="data:application/pdf;base64,' + data['data']['pdf'] + '"></iframe>';
                     $(".modal-body").append($datapdf);
                     $(".model-button-box").css("display", "block");
+                    var $input = data['data']['result'];
 
-                    $cusinvoicename = '<p>Đơn vị bán hàng: ' +  data['data']['result']['cusinvoicename'] + '</p>';
-                    $taxid = '<p>Số fax: ' +  data['data']['result']['taxid'] + '</p>';
-                    $address = '<p>Địa chỉ: ' +  data['data']['result']['address'] + '</p>';
-                    $grandtotal = '<p>Tổng tiền: ' +  formatNumber(data['data']['result']['grandtotal']) + ' VNĐ</p>';
+                    $("#invoiceprefix").append(chekInfor( $input['invoiceprefix'] ));
+                    $("#invoiceno").append(chekInfor( $input['invoiceno'] ));
+                    $("#buyername").append(chekInfor( $input['buyername'] ));
+                    $("#cusinvoicename").append(chekInfor( $input['cusinvoicename'] ));
+                    $("#taxid").append(chekInfor( $input['taxid'] ));
+                    $("#address").append(chekInfor( $input['address'] ));
+                    $("#grandtotal").append(chekInfor( $input['grandtotal'] ));
 
-                    $(".result").append($cusinvoicename, $taxid, $address, $grandtotal);
+                    $(".result").css("display", "block");
+                    $(".result-error").css("display", "none");
                 }else {
                     $msg = '<span>'+ data['msg'] + '</span>';
+                    $(".result-error").css("display", "block");
                     $(".result-error").append($msg);
                 }
+                $('#reload').find('img').attr('src', 'reload-captcha-code');
             },
             error: function (data) {
                // console.log(data);
@@ -150,5 +188,9 @@
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
     }
 
+    function chekInfor( data ) {
+        if(data != null) return data;
+        return "";
+    }
 </script>
 @endsection

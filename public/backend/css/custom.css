@@ -8,3 +8,6 @@ body{
 .require{
     color: red;
 }
+.user-menu .dropdown-toggle{
+    height: 50px;
+}
