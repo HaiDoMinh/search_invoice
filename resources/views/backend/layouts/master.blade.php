@@ -98,6 +98,7 @@
 
         <script>
             CKEDITOR.replaceClass= "ckediter";
+            CKEDITOR.config.extraPlugins = 'colorbutton';
         </script>
         @yield('scripts')
 
