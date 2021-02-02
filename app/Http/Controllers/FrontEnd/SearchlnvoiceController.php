@@ -13,7 +13,7 @@ class SearchlnvoiceController extends BaseController
 {
     public function index()
     {
-        $pages = Page::where('status', 1)->get();
+        $pages = Page::where('status', Page::PUBLISH)->get();
 
         if( !empty($_SESSION['username']) )
         {
@@ -25,7 +25,6 @@ class SearchlnvoiceController extends BaseController
 
     public function searchInvoice( Request $request )
     {
-
         $result = ['success'=>false, 'msg' => 'Error'];
         $docno = $request['docno'];
         $confimCode = $request['confimCode'];
@@ -69,8 +68,8 @@ class SearchlnvoiceController extends BaseController
 
     public function page( $url )
     {
-        $pages = Page::where('status', 1)->get();
-        $page = Page::where('slug', 'LIKE', '%'. $url . '%')->first();
+        $pages = Page::where('status',  Page::PUBLISH)->get();
+        $page = Page::where('slug', 'LIKE', '%'. $url . '%')->where('status', Page::PUBLISH)->first();
         if( empty($page) )
         {
             return redirect()->route('SearchlnvoiceController.404');
@@ -81,7 +80,7 @@ class SearchlnvoiceController extends BaseController
 
     public function page404()
     {
-        $pages = Page::all();
+        $pages = Page::where('status',  Page::PUBLISH)->get();
         return view("/frontend/error/404", compact('pages'));
     }
 }

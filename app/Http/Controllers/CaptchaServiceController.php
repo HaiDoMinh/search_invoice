@@ -21,28 +21,6 @@ class CaptchaServiceController extends Controller
         ]);
     }
 
-    public function reloadCaptcha()
-    {
-        return response()->json(['captcha'=> captcha_img()]);
-    }
-
-    public function reloadCaptchaCode()
-    {
-        session_start();
-        $string = md5(time());
-        $string = substr($string, 0, 4);
-
-        $_SESSION['captcha'] = $string;
-        $img = imagecreate(150,50);
-        $background = imagecolorallocate($img, 255,255,255);
-        $text_color = imagecolorallocate($img, 0,0,0);
-        imagestring($img, 20,50,15, $string, $text_color);
-
-        header("Content-type: image/png");
-        imagepng($img);
-        imagedestroy($img);
-    }
-
     public function captcha()
     {
         function randomString($length = 4)
@@ -81,7 +59,6 @@ class CaptchaServiceController extends Controller
 
         //Add the random code of string to the image
         imagestring($im, 10, 16, 6, $code, $fg);//imagestring
-
 
         //generate the png image
         imagepng($im);
