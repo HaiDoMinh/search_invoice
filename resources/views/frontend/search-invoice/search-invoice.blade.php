@@ -168,7 +168,7 @@
                     $("#cusinvoicename").append(chekInfor( $input['cusinvoicename'] ));
                     $("#taxid").append(chekInfor( $input['taxid'] ));
                     $("#address").append(chekInfor( $input['address'] ));
-                    $("#grandtotal").append(chekInfor( $input['grandtotal'] ));
+                    $("#grandtotal").append(chekInfor( formatNumber($input['grandtotal']) + " VNĐ" ));
 
                     $(".result").css("display", "block");
                     $(".result-error").css("display", "none");
