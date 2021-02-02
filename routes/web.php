@@ -22,6 +22,11 @@ Route::get('/tra-cuu-hd', 'FrontEnd\SearchlnvoiceController@searchInvoice')->nam
 
 Auth::routes();
 
+Route::get('/login-guest', 'Auth\LoginController@loginGuest')->name('loginGuest');
+Route::post('/login-guest', 'Auth\LoginController@loginGuestPost')->name('loginGuestPost');
+Route::get('/logout-guest', 'Auth\LoginController@logoutGuest')->name('logoutGuest');
+Route::get('/logout', 'Auth\LoginController@logout');
+
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
 {
     Route::resource('pages', 'Admin\PagesController');
@@ -30,10 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/login-guest', 'Auth\LoginController@loginGuest')->name('loginGuest');
-Route::post('/login-guest', 'Auth\LoginController@loginGuestPost')->name('loginGuestPost');
-Route::get('/logout-guest', 'Auth\LoginController@logoutGuest')->name('logoutGuest');
-Route::get('/logout', 'Auth\LoginController@logout');
+
 Route::get('/404-page', 'FrontEnd\SearchlnvoiceController@page404')->name('SearchlnvoiceController.404');
 
 Route::get('{url}', 'FrontEnd\SearchlnvoiceController@page')->name('SearchlnvoiceController.page');

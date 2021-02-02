@@ -34,7 +34,7 @@ class BkavModel extends Model
     }
     public function GetDataInvoiceInfo($docno, $user, $pass, $urlGet, $confimCode)
     {
-        if ( !empty($_SESSION['username']) || !empty( Auth::user() ))
+        if ( !empty($_SESSION['username']) )
         {
             $response = Http::withBasicAuth($user, $pass)
                 ->get($urlGet . 'api_geteinvoiceinfo',

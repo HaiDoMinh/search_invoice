@@ -1,6 +1,13 @@
+html{
+    height: 100%;
+}
 body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: #eee;
+    height: 100%;
+}
+.box-content{
+    min-height: calc(100% - 250px);
 }
 .header-box{
     background-color: #fff !important;
@@ -54,11 +61,12 @@ li a:hover {
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
-    height: 500px; /* You must set a specified height */
+    min-height: 500px; /* You must set a specified height */
     width: 100%;
     text-align: center;
     clear: both;
     filter: brightness(90%);
+    /*min-height: calc(100% - 310px);*/
 }
 .content-search-invoice h1{
     padding-top: 8%;
@@ -226,8 +234,6 @@ li a:hover {
     display: none;
 }
 .model-button-box button{
-    /*height: 55px;*/
-    /*width: 50%;*/
     text-transform: uppercase;
     float: left;
 }
@@ -237,7 +243,7 @@ li a:hover {
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
-    height: 500px; /* You must set a specified height */
+    min-height: 500px; /* You must set a specified height */
     width: 100%;
     text-align: center;
     clear: both;

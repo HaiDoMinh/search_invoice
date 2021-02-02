@@ -52,7 +52,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        //$this->middleware('guest')->except('logout');//->except('logoutGuest');
     }
 
     /**
@@ -162,11 +162,13 @@ class LoginController extends Controller
 
     public function logoutGuest(Request $request)
     {
+       // dd('111');
         if( !empty($_SESSION['username']) ) {
 
             unset($_SESSION['username']);
             unset($_SESSION['useremail']);
         }
+
         return redirect()->route('SearchlnvoiceController.index');
     }
 }

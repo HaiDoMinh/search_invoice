@@ -14,7 +14,7 @@ class SearchlnvoiceController extends BaseController
     public function index()
     {
         $pages = Page::all();
-        if( !empty($_SESSION['username']) || !empty( Auth::user() ))
+        if( !empty($_SESSION['username']) )
         {
             return view("/frontend/search-invoice/search-invoice", compact('pages'));
         }
