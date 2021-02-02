@@ -31,14 +31,12 @@
             <form method="POST" action="{!! route('pages.store') !!}" enctype="multipart/form-data">
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                 <!-- left column -->
-
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                @if( session('error') )
+                    <div class="form-group has-feedback alert alert-danger">
+                        <span class="invalid-feedback mess-danger" role="alert">
+                            {{ _('Cập nhật lỗi!') }}<br />
+                            {{ \Session::get('error') }}
+                        </span>
                     </div>
                 @endif
 

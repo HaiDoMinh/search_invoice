@@ -13,7 +13,8 @@ class SearchlnvoiceController extends BaseController
 {
     public function index()
     {
-        $pages = Page::all();
+        $pages = Page::where('status', 1)->get();
+
         if( !empty($_SESSION['username']) )
         {
             return view("/frontend/search-invoice/search-invoice", compact('pages'));
@@ -68,7 +69,7 @@ class SearchlnvoiceController extends BaseController
 
     public function page( $url )
     {
-        $pages = Page::all();
+        $pages = Page::where('status', 1)->get();
         $page = Page::where('slug', 'LIKE', '%'. $url . '%')->first();
         if( empty($page) )
         {

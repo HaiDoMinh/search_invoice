@@ -32,6 +32,14 @@
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                 <input type="hidden" name="_method" value="PUT">
 
+                @if( session('error') )
+                    <div class="form-group has-feedback alert alert-danger">
+                        <span class="invalid-feedback mess-danger" role="alert">
+                            {{ _('Cập nhật lỗi!') }}<br />
+                            {{ \Session::get('error') }}
+                        </span>
+                    </div>
+                @endif
                     <!-- left column -->
                 <div class="col-md-9">
                     <!-- general form elements -->
@@ -42,14 +50,6 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <div class="box-body">
-                            @if( session('error') )
-                                <div class="form-group has-feedback alert alert-danger">
-                                <span class="invalid-feedback mess-danger" role="alert">
-                                    {{ _('Cập nhật lỗi!') }}<br />
-                                    {{ \Session::get('error') }}
-                                </span>
-                                </div>
-                            @endif
                             <div class="form-group">
                                 <label>{{ __('Tiêu đề page') }} <span class="require">(*)</span></label>
                                 <input type="text" class="form-control" name="title"
@@ -84,7 +84,7 @@
                                 <select class="form-control" name="status">
                                     @if( !empty( \App\Models\Page::statusLabelArr() ) )
                                         @foreach( \App\Models\Page::statusLabelArr() as $key => $item )
-                                            <option @if( $key == old('status') ) selected @endif
+                                            <option @if( $key == $page->status ) selected @endif
                                             value="{!! $key !!}">
                                                 {!! $item !!}
                                             </option>
