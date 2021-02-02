@@ -29,6 +29,9 @@
     <section class="content">
         <div class="row">
             <!-- left column -->
+            <div class="box-header with-border">
+                <h3 class="box-title">{{ __('Thông tin tài khoản') }}</h3>
+            </div>
             <div class="col-md-6">
                 <!-- general form elements -->
                 <div class="box box-primary">
