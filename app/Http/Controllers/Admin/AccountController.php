@@ -53,7 +53,7 @@ class AccountController extends BaseController{
         }
 
         $data = $request->all();
-        $data['password_real'] = $data['password'];
+//        $data['password_real'] = $data['password'];
         $data['password'] = \Hash::make($data['password']);
 
         $account = User::create($data);
@@ -79,8 +79,8 @@ class AccountController extends BaseController{
             if( empty($data['password_real']) )
             {
                 unset( $data['password'] );
-                unset( $data['password_real'] );
             }
+            unset( $data['password_real'] );
 
             $account = User::find($id)->update($data);
         }

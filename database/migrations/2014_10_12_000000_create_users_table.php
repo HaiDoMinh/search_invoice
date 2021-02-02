@@ -21,9 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
 
-            $table->string('password_real')->nullable();
-            $table->tinyInteger('role')->default(0)->nullable();
-            $table->tinyInteger('type')->default(0)->nullable();
             $table->tinyInteger('status')->default(0)->nullable();
             $table->string('phone')->nullable();
             $table->text('note')->nullable();

@@ -11,3 +11,7 @@ body{
 .user-menu .dropdown-toggle{
     height: 50px;
 }
+
+.sidebar-logout{
+    padding: 15px !important;
+}

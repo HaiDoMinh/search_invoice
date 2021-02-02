@@ -165,6 +165,7 @@
 
 @stop
 @section('scripts')
+    <script src="{!! asset('admin-lte/dist/js/pages/dashboard.js') !!}"></script>
     @parent
     CKEDITOR.replace('editor1');
 @stop

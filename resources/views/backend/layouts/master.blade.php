@@ -94,7 +94,7 @@
         <!-- AdminLTE App -->
         <script src="{!! asset('admin-lte/dist/js/adminlte.min.js') !!}"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="{!! asset('admin-lte/dist/js/pages/dashboard.js') !!}"></script>
+
         <script src="{!! asset('common/ckeditor/ckeditor.js') !!}"></script>
 
         <script>

@@ -16,7 +16,8 @@
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">Trình điều hướng</li>
+{{--            <li class="header">Trình điều hướng</li>--}}
+            <br>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-credit-card"></i>
@@ -40,7 +41,7 @@
                 </ul>
             </li>
             <li class="alone">
-                <a class="btn btn-danger btn-md" href="{{ route('logout') }}" style="color: #FFF;"
+                <a class="btn btn-danger btn-md sidebar-logout" href="{{ route('logout') }}" style="color: #FFF;"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                    <i class="fa fa-sign-out"></i>
                     {{ __('ĐĂNG XUẤT') }}
