@@ -60,7 +60,7 @@
                                        value="{{ old('title') }}" required>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('Nội dung page') }}</label>
+                                <label>{{ __('Nội dung page') }} <span class="require">(*)</span></label>
                                 <textarea type="text" min="0" class="ckediter form-control" name="content"
                                        id="content" placeholder="{{ __('Nội dung page') }}..."
                                           value="{!! old('content') !!}"></textarea>
