@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Tìm kiếm hóa đơn</title>
+    <title>{!! ENV('APP_NAME_LONG') !!}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/STS-W.png') }}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -39,10 +39,8 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-
-
     @yield('stylesheet')
-{{--    <link rel="stylesheet" type="text/css" href="{!! asset('common/bootrap/css/bootstrap.min.css') !!}">--}}
+
 </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -78,7 +76,6 @@
         <script src="{!! asset('admin-lte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') !!}"></script>
         <!-- CK Editor -->
         <script src="{!! asset('admin-lte/bower_components/ckeditor/ckeditor.js') !!}"></script>
-
         <!-- Select2 -->
         <script src="{!! asset('admin-lte/bower_components/select2/dist/js/select2.full.min.js') !!}"></script>
         <!-- DataTables -->
@@ -101,6 +98,7 @@
             CKEDITOR.replaceClass= "ckediter";
             CKEDITOR.config.extraPlugins = 'colorbutton';
         </script>
+
         @yield('scripts')
 
     </body>

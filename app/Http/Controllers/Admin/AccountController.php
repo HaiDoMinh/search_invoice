@@ -17,7 +17,7 @@ class AccountController extends BaseController{
             $query = $query->where('name', 'LIKE', '%'. $request['search_text'] . '%');
         }
 
-        $users = $query->orderBy('updated_at', 'desc')->paginate(15);
+        $users = $query->orderBy('updated_at', 'desc')->paginate(5);
 
         return view("/backend/account/index", compact('users', 'request'));
     }

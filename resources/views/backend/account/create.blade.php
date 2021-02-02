@@ -69,7 +69,7 @@
                                        id="password" placeholder="Password..." required>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('email') }}</label>
+                                <label>{{ __('Email') }}</label>
                                 <input type="email" min="0" class="form-control" name="email"
                                        id="email" placeholder="{{ __('Email') }}..."
                                        value="{!! old('email') !!}">
@@ -98,30 +98,13 @@
                                     <option value="<?= \App\Models\User::PENDING ?>">Ngừng hoạt động</option>
                                 </select>
                             </div>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-
-                <div class="col-md-12">
-                    <!-- general form elements -->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">{{ __('Thông tin Khác') }}</h3>
-                        </div>
-                        <!-- /.box-header -->
-
-                        <!-- form start -->
-                        <div class="box-body">
                             <div class="form-group">
                                 <label>{{ __('Ghi chú') }}</label>
                                 <textarea class="form-control" name="note"
-                                    placeholder="{{ __('Ghi chú') }}...">{{ old('note') }}</textarea>
-                            </div>
+                                          placeholder="{{ __('Ghi chú') }}...">{{ old('note') }}</textarea>
+                        </div>
                         </div>
                         <!-- /.box-body -->
-
                     </div>
                     <!-- /.box -->
                 </div>

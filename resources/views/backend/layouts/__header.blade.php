@@ -9,9 +9,6 @@
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
-{{--        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">--}}
-{{--            <span class="sr-only">Toggle navigation</span>--}}
-{{--        </a>--}}
         <div class="dasboard_brand">
             <a href="" class="navbar-brand">
                 <div class="brand-text d-none d-md-inline-block">
@@ -25,14 +22,14 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="@if( !empty( \Auth::user()->image ) ) {!! \Auth::user()->image !!} @else {!! asset('admin-lte/dist') !!}/img/user2-160x160.jpg @endif" class="user-image"
+                        <img src="{!! asset('admin-lte/dist') !!}/img/user2-160x160.jpg" class="user-image"
                                 alt="avatar user">
                         <span class="hidden-xs"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="@if( !empty( \Auth::user()->image ) ) {!! \Auth::user()->image !!} @else {!! asset('admin-lte/dist') !!}/img/user2-160x160.jpg @endif" class="img-circle"
+                            <img src="{!! asset('admin-lte/dist') !!}/img/user2-160x160.jpg" class="img-circle"
                                     alt="avatar user">
                             <p>
                                 <small>Ngày tạo: @if( !empty( \Auth::user()->created_at ) ) {!! \Auth::user()->created_at !!} @endif</small>

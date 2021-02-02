@@ -17,7 +17,7 @@ class PagesController extends BaseController{
             $query = $query->where('title', 'LIKE', '%'. $request['search_text'] . '%');
         }
 
-        $pages = $query->orderBy('updated_at', 'desc')->paginate(15);
+        $pages = $query->orderBy('updated_at', 'desc')->paginate(5);
 
         return view("/backend/pages/index", compact('pages', 'request'));
     }

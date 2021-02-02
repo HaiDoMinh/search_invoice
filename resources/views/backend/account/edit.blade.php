@@ -21,7 +21,7 @@
             <li>
                 <a href=""><i class="fa fa-dashboard"></i> {{ __('Trang chủ') }}</a>
             </li>
-            <li class="active">{{ __('Tạo mới') }}</li>
+            <li class="active">{{ __('Cập nhật tài khoản') }}</li>
         </ol>
     </section>
 

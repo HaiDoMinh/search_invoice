@@ -5,7 +5,6 @@
 <div class="login-box">
    <div class="login-logo">
        <img src="{{ asset("/img/logo-STS.png") }}">
-{{--      <a href=""><b>{!! env('APP_NAME') !!}</b></a>--}}
    </div>
    <!-- /.login-logo -->
    <div class="login-box-body">

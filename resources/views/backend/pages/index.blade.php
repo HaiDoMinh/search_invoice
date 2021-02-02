@@ -59,7 +59,7 @@
                                     <th>{{ __('Tình trạng') }}</th>
                                     <th>{{ __('Ngày tạo') }}</th>
 									<th>{{ __('Ngày cập nhật') }}</th>
-                                    <th>{{ __('Thao tác') }}</th>
+                                    <th class="table-right">{{ __('Thao tác') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,11 +71,7 @@
                                             <td data-title="Trạng thái">{!! $item->statusLabelShow() !!}</td>
                                             <td data-title="Ngày tạo">{!! !empty($item->created_at) ? date('d/m/Y', strtotime($item->created_at)) : '' !!}</td>
 											<td data-title="Ngày cập nhật">{!! !empty($item->updated_at) ? date('d/m/Y', strtotime($item->updated_at)) : '' !!}</td>
-                                            <td data-title="Thao tác">
-                                                <a class="btn btn-sm btn-info" title="Chi tiết"
-                                                   href="{!! route('pages.show', ['page' => $item->id]) !!}">
-                                                    <i class="fa fa-eye"> {{ __('Chi tiết') }}</i>
-                                                </a>
+                                            <td data-title="Thao tác" class="table-right">
                                                 <a class="btn btn-sm btn-warning" title="Sửa cập nhật"
                                                     href="{!! route('pages.edit', ['page' => $item->id]) !!}">
                                                     <i class="fa fa-edit"> Cập nhật</i>

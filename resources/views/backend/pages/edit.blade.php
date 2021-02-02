@@ -21,7 +21,7 @@
             <li>
                 <a href=""><i class="fa fa-dashboard"></i> {{ __('Trang chủ') }}</a>
             </li>
-            <li class="active">{{ __('Tạo mới') }}</li>
+            <li class="active">{{ __('Cập nhật page') }}</li>
         </ol>
     </section>
 
@@ -162,5 +162,6 @@
 
 @stop
 @section('scripts')
+    <script src="{!! asset('admin-lte/dist/js/pages/dashboard.js') !!}"></script>
     @parent
 @stop
