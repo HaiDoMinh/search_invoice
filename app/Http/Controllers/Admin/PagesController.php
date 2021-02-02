@@ -83,7 +83,7 @@ class PagesController extends BaseController{
             $data = $request->all();
             $data['slug'] = Page::forwardNameToUrl($request['title']);
 
-            $slug = Page::where("slug", $data['slug'])->first();
+            $slug = Page::where("slug", $data['slug'])->where("id", "!=", $id)->first();
 
             if ( !empty($slug) || empty($data['slug']) || in_array($data['slug'] , $arraySlug) )
             {
