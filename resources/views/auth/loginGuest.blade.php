@@ -50,8 +50,6 @@
             </div>
         </form>
         <!-- /.social-auth-links -->
-        <a href="{{ route('password.request') }}">{{ __('Quên mật khẩu') }}</a><br>
-        <a href="{{ route('register') }}" class="text-center">{{ __('Đăng ký sử dụng phần mềm') }}</a>
    </div>
    <!-- /.login-box-body -->
 </div>
