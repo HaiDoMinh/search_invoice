@@ -43,24 +43,24 @@
                             <label>{{ __('Họ và tên') }} <span class="require">(*)</span></label>
                             <input type="text" class="form-control" name="name"
                                    id="name" placeholder="{{ __('Họ và tên') }}..."
-                                   value="{{ $account->name }}" required>
+                                   value="{{ $account->name }}" required disabled>
                         </div>
                         <div class="form-group">
                             <label>{{ __('SĐT') }}</label>
                             <input type="phone" min="0" class="form-control" name="phone"
                                    id="phone" placeholder="{{ __('Số điện thoại') }}..."
-                                   value="{!! $account->phone !!}">
+                                   value="{!! $account->phone !!}" disabled>
                         </div>
                         <div class="form-group">
                             <label>Mật khẩu <span>(*)</span></label>
                             <input type="password" class="form-control" name="password"
-                                   id="password" placeholder="Password..." required>
+                                   id="password" placeholder="Password..." required disabled>
                         </div>
                         <div class="form-group">
                             <label>{{ __('email') }}</label>
                             <input type="email" min="0" class="form-control" name="email"
                                    id="email" placeholder="{{ __('Email') }}..."
-                                   value="{!! $account->email !!}">
+                                   value="{!! $account->email !!}" disabled>
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -81,36 +81,10 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label>{{ __('Trạng thái') }}</label>
-                            <select class="form-control" name="status">
+                            <select class="form-control" name="status" disabled>
                                 @if( !empty( \App\Models\User::statusLabelArr() ) )
                                     @foreach( \App\Models\User::statusLabelArr() as $key => $item )
                                         <option @if( $key == $account->status ) selected @endif
-                                        value="{!! $key !!}">
-                                            {!! $item !!}
-                                        </option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>{{ __('Hình thức') }}</label>
-                            <select class="form-control" name="type">
-                                @if( !empty( \App\Models\User::typeArr() ) )
-                                    @foreach( \App\Models\User::typeArr() as $key => $item )
-                                        <option @if( $key == $account->type ) selected @endif
-                                        value="{!! $key !!}">
-                                            {!! $item !!}
-                                        </option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>{{ __('Vai trò') }}</label>
-                            <select class="form-control" name="role">
-                                @if( !empty( \App\Models\User::roleArr() ) )
-                                    @foreach( \App\Models\User::roleArr() as $key => $item )
-                                        <option @if( $key == $account->role ) selected @endif
                                         value="{!! $key !!}">
                                             {!! $item !!}
                                         </option>
@@ -137,7 +111,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label>{{ __('Ghi chú') }}</label>
-                            <textarea class="form-control" name="note"
+                            <textarea class="form-control" name="note" disabled
                                       placeholder="{{ __('Ghi chú') }}...">{{ $account->note }}</textarea>
                         </div>
                     </div>

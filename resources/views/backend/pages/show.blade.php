@@ -43,13 +43,13 @@
                             <label>{{ __('Tiêu đề page') }} <span class="require">(*)</span></label>
                             <input type="text" class="form-control" name="title"
                                    id="title" placeholder="{{ __('Tên bài page') }}..."
-                                   value="{!! $page->title !!}" required>
+                                   value="{!! $page->title !!}" required disabled>
                         </div>
                         <div class="form-group">
                             <label>{{ __('Nội dung page') }}</label>
                             <textarea type="text" min="0" class="ckediter form-control" name="content" rows="9" cols="70"
                                       id="content" placeholder="{{ __('Nội dung page') }}..."
-                                      value="">{!! $page->content !!}</textarea>
+                                      value="" disabled>{!! $page->content !!}</textarea>
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -69,7 +69,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label>{{ __('Trạng thái') }}</label>
-                            <select class="form-control" name="status">
+                            <select class="form-control" name="status" disabled>
                                 @if( !empty( \App\Models\Page::statusLabelArr() ) )
                                     @foreach( \App\Models\Page::statusLabelArr() as $key => $item )
                                         <option @if( $key == old('status') ) selected @endif
@@ -98,7 +98,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label>{{ __('Ghi chú') }}</label>
-                            <textarea class="form-control" name="note"
+                            <textarea class="form-control" name="note" disabled
                                       placeholder="{{ __('Ghi chú') }}...">{{ $page->note }}</textarea>
                         </div>
                     </div>

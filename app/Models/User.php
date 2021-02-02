@@ -13,21 +13,11 @@ class User extends Authenticatable
 
     const PUBLISH = 1;
     const PENDING = 2;
-    const DRAFT = 3;
-    const DELETED = 4;
-
-    const ROLE_ROOT = 1;
-    const ROLE_ADMIN = 2;
-    const ROLE_CONTRIBUTOR = 3;
-    const ROLE_NORMAL = 4;
-
-    const TYPE_MANAGE = 1;
-    const TYPE_PC = 2;
 
     protected $table = 'users';
 
     protected $fillable = [
-        'name', 'email', 'role', 'type', 'password', 'password_real',
+        'name', 'email', 'password', 'password_real',
         'phone', 'status', 'created_at', 'updated_at', 'note'
     ];
 
@@ -60,9 +50,7 @@ class User extends Authenticatable
     public static function statusLabelArr() {
         return [
             self::PUBLISH => '<span class="text-green">Hoạt động</button>',
-            self::PENDING => '<span class="text-yellow">Chờ duyệt</button>',
-            self::DRAFT => '<span class="text-orange">Xóa tạm</button>',
-            self::DELETED => '<span class="text-red">Đã xóa</button>',
+            self::PENDING => '<span class="text-yellow">Chờ duyệt</button>'
         ];
     }
 
@@ -75,39 +63,6 @@ class User extends Authenticatable
     {
         $key = $this->status;
         $arr = $this->statusLabelArr();
-        if (isset($arr[$key])) {
-            return $arr[$key];
-        }
-        return 'N/A';
-    }
-
-    public static function roleArr() {
-        return [
-            self::ROLE_NORMAL => 'Người dùng thường',
-            self::ROLE_CONTRIBUTOR => 'Cộng tác viên',
-            self::ROLE_ADMIN => 'Quản trị viên'
-        ];
-    }
-    public function roleShow()
-    {
-        $key = $this->role;
-        $arr = $this->roleArr();
-        if (isset($arr[$key])) {
-            return $arr[$key];
-        }
-        return 'N/A';
-    }
-
-    public static function typeArr() {
-        return [
-            self::TYPE_PC => 'PC',
-            self::TYPE_MANAGE => 'MANAGE'
-        ];
-    }
-    public function typeShow()
-    {
-        $key = $this->type;
-        $arr = $this->typeArr();
         if (isset($arr[$key])) {
             return $arr[$key];
         }

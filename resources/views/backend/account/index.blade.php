@@ -58,8 +58,6 @@
                                     <th>{{ __('Họ và tên') }}</th>
                                     <th>{{ __('Email') }}</th>
                                     <th>{{ __('Tình trạng') }}</th>
-                                    <th>{{ __('Vai trò') }}</th>
-                                    <th>{{ __('Hình thức') }}</th>
                                     <th>{{ __('Ngày tạo') }}</th>
 									<th>{{ __('Ngày cập nhật') }}</th>
                                     <th>{{ __('Thao tác') }}</th>
@@ -73,8 +71,6 @@
                                             <td data-title="Họ và tên">{!! $item->name !!}</td>
                                             <td data-title="Email">{!! $item->email !!}</td>
                                             <td data-title="Trạng thái">{!! $item->statusLabelShow() !!}</td>
-                                            <td data-title="Vai trò">{!! $item->roleShow() !!}</td>
-                                            <td data-title="Hình thức">{!! $item->typeShow() !!}</td>
                                             <td data-title="Ngày tạo">{!! !empty($item->created_at) ? date('d/m/Y', strtotime($item->created_at)) : '' !!}</td>
 											<td data-title="Ngày cập nhật">{!! !empty($item->updated_at) ? date('d/m/Y', strtotime($item->updated_at)) : '' !!}</td>
                                             <td data-title="Thao tác">

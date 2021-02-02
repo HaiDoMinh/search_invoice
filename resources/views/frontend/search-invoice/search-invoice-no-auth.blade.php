@@ -7,7 +7,7 @@
         <h1>Tra cứu hóa đơn</h1>
         <hr>
         <div class="container">
-            <div class="form-row justify-content-center">
+            <div class="form-row justify-content-center form-box">
                 <div class="col-md-4 code invoice-box">
                     <input type="text" class="invoice-code form-control" placeholder="Nhập mã hóa đơn..."
                            id="invoice-code" name="invoice-code">

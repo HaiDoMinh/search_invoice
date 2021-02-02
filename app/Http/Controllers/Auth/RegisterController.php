@@ -91,8 +91,6 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'password_real' => $data['password'],
             'password' => Hash::make( $data['password'] ),
-            'role' => User::ROLE_NORMAL,
-            'type' => User::TYPE_PC,
             'status' => User::PENDING,
         ]);
     }

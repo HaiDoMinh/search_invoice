@@ -93,7 +93,7 @@ class LoginController extends Controller
                 if( \Auth::attempt( ['phone' => $emailOrPhone, 'password' =>$password], $remember ) )
                 {
                     if( \Auth::user()->status == \App\Models\User::PUBLISH ){
-                        if( isset( \Auth::user()->type ) && (\Auth::user()->type == \App\Models\User::TYPE_MANAGE) )
+                        if( isset( \Auth::user()->type ) )
                         {
                             return redirect()->intended('/admin/pages');
                         }
@@ -109,7 +109,7 @@ class LoginController extends Controller
                 if( \Auth::attempt( ['email' => $emailOrPhone, 'password' =>$password], $remember ) )
                 {
                     if( \Auth::user()->status == \App\Models\User::PUBLISH ){
-                        if( isset( \Auth::user()->type ) && (\Auth::user()->type == \App\Models\User::TYPE_MANAGE) )
+                        if( isset( \Auth::user()->type ) )
                         {
                             return redirect()->intended('/admin/pages');
                         }

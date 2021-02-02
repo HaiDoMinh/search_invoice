@@ -103,32 +103,6 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>{{ __('Hình thức') }}</label>
-                                <select class="form-control" name="type">
-                                    @if( !empty( \App\Models\User::typeArr() ) )
-                                        @foreach( \App\Models\User::typeArr() as $key => $item )
-                                            <option @if( $key == $account->type ) selected @endif
-                                            value="{!! $key !!}">
-                                                {!! $item !!}
-                                            </option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>{{ __('Vai trò') }}</label>
-                                <select class="form-control" name="role">
-                                    @if( !empty( \App\Models\User::roleArr() ) )
-                                        @foreach( \App\Models\User::roleArr() as $key => $item )
-                                            <option @if( $key == $account->role ) selected @endif
-                                            value="{!! $key !!}">
-                                                {!! $item !!}
-                                            </option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
                         </div>
                         <!-- /.box-body -->
 

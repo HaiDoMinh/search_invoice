@@ -98,26 +98,8 @@
                                     <option value="<?= \App\Models\User::PENDING ?>">Ngừng hoạt động</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>Hình thức</label>
-                                <select class="form-control" name="type">
-                                    <option value="<?= \App\Models\User::TYPE_PC ?>">Người dùng PC</option>
-                                    <option value="<?= \App\Models\User::TYPE_MANAGE ?>">Người dùng Manage</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Vai trò</label>
-                                <select class="form-control" name="role">
-                                    @if( !empty( $roles ) )
-                                        @foreach( $roles as $key => $role )
-                                            <option value="{!! $key !!}">{!! $role !!}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
                         </div>
                         <!-- /.box-body -->
-
                     </div>
                     <!-- /.box -->
                 </div>

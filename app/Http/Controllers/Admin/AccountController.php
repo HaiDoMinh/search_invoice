@@ -29,8 +29,7 @@ class AccountController extends BaseController{
     }
 
     public function create(){
-        $roles = User::roleArr();
-        return view("/backend/account/create", compact('roles'));
+        return view("/backend/account/create");
     }
 
     public function store( Request $request ){
@@ -64,9 +63,7 @@ class AccountController extends BaseController{
 
     public function edit( $id ){
         $account = User::find($id);
-        $roles = User::roleArr();
-        $types = User::typeArr();
-        return view("/backend/account/edit", compact( 'account','roles', 'types' ));
+        return view("/backend/account/edit", compact( 'account'));
     }
 
     public function update(Request $request, $id)

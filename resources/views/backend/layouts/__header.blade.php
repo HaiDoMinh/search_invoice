@@ -41,13 +41,13 @@
                         <li class="user-footer" style="background: #33b35a">
                             <div class="pull-left">
                                 <a href="{!! route('account.show', ['account' => \Auth::user()->id ]) !!}"
-                                    class="btn btn-warning btn-md">Profile</a>
+                                    class="btn btn-warning btn-md">Hồ sơ</a>
                             </div>
                             <div class="pull-right">
                                 <a class="btn btn-danger btn-md" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Sign out') }}
+                                    {{ __('Đăng xuất') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
