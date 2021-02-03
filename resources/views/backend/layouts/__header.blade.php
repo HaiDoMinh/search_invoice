@@ -32,6 +32,9 @@
                             <img src="{!! asset('admin-lte/dist') !!}/img/user2-160x160.jpg" class="img-circle"
                                     alt="avatar user">
                             <p>
+                                <small>@if( !empty( \Auth::user()->name ) ) {!! \Auth::user()->name !!} @endif</small>
+                            </p>
+                            <p>
                                 <small>Ngày tạo: @if( !empty( \Auth::user()->created_at ) ) {!! \Auth::user()->created_at !!} @endif</small>
                             </p>
                         </li>

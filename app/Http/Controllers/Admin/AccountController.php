@@ -13,9 +13,6 @@ class AccountController extends BaseController{
 
     public function index( Request $request ){
 
-        if( !empty($_SESSION['messenger']) ) {
-            unset($_SESSION['messenger']);
-        }
         $query = User::where( 'name', '!=', '' );
 
         if( !empty( $request['search_text'] ) ){
