@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\User;
 use Validator;
+session_start();
 
 class AccountController extends BaseController{
 
     public function index( Request $request ){
+
+        if( !empty($_SESSION['messenger']) ) {
+            unset($_SESSION['messenger']);
+        }
         $query = User::where( 'name', '!=', '' );
 
         if( !empty( $request['search_text'] ) ){
@@ -49,11 +54,11 @@ class AccountController extends BaseController{
         $input = $request->all();
 
         if ($validator->fails()) {
-            return redirect()->route('account.create', ['input' => $input])->withErrors($validator);
+            return redirect()->route('account.create')->withInput($input)->withErrors($validator);
         }
 
         $data = $request->all();
-//        $data['password_real'] = $data['password'];
+
         $data['password'] = \Hash::make($data['password']);
 
         $account = User::create($data);
@@ -63,16 +68,23 @@ class AccountController extends BaseController{
 
     public function edit( $id ){
         $account = User::find($id);
+
         return view("/backend/account/edit", compact( 'account'));
     }
 
     public function update(Request $request, $id)
     {
         $account = User::where("email", $request['email'])->where("id", "!=", $id)->first();
+
         if (!empty($account)) {
             return redirect()->route('account.edit', ['account' => $id])->with('error', 'Email đã tồn tại.');
-        }else {
+        } else {
             $data = $request->all();
+
+            if(strlen ($data['password']) < 6)
+            {
+                return redirect()->route('account.edit', ['account' => $id])->with('error', 'Password không được nhỏ hơn 6 ký tự.');
+            }
 
             $data['password_real'] = $data['password'];
             $data['password'] = \Hash::make($data['password']);
@@ -90,7 +102,13 @@ class AccountController extends BaseController{
 
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $user = User::find($id);
+        if(!empty($user) && $user->email == "admin@gmail.com")
+        {
+            return redirect()->route('account.index')->with('messenger', 'Account không thể xóa.');
+        }
+
+        $user->delete();
         return redirect()->route('account.index');
     }
 }

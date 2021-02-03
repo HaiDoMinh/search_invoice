@@ -61,7 +61,7 @@
                                 <label>{{ __('Nội dung page') }} <span class="require">(*)</span></label>
                                 <textarea type="text" min="0" class="ckediter form-control" name="content"
                                        id="content" placeholder="{{ __('Nội dung page') }}..."
-                                          value="{!! old('content') !!}"></textarea>
+                                          value="{!! old('content') !!}">{!! old('content') !!}</textarea>
                             </div>
                         </div>
                         <!-- /.box-body -->

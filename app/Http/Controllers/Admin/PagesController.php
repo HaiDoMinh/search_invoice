@@ -50,7 +50,7 @@ class PagesController extends BaseController{
         $input = $request->all();
 
         if ($validator->fails()) {
-            return redirect()->route('pages.create', ['input' => $input])->withErrors($validator)
+            return redirect()->route('pages.create')->withInput($input)->withErrors($validator)
                              ->with('error', 'Tiêu đề và Nội dung không thể trống hoặc tiêu đề đã tồn tại.');
         } else {
             $input['slug'] = Page::forwardNameToUrl($request['title']);
@@ -59,7 +59,7 @@ class PagesController extends BaseController{
 
             if ( !empty($slug) || empty($input['slug']) || in_array($input['slug'] , $arraySlug)  )
             {
-                return redirect()->route('pages.create', ['input' => $input])->with('error', 'Tiêu đề đã tồn tại hoặc từ khóa cấm.');
+                return redirect()->route('pages.create')->withInput($input)->with('error', 'Tiêu đề đã tồn tại hoặc từ khóa cấm.');
             }
             $page = Page::create($input);
         }

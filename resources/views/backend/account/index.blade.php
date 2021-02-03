@@ -26,6 +26,13 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-lg-12 col-xs-12">
+                @if( session('messenger') )
+                    <div class="form-group has-feedback alert alert-danger">
+                        <span class="invalid-feedback mess-danger" role="alert">
+                            {{ \Session::get('messenger') }}
+                        </span>
+                    </div>
+                @endif
                 <div class="box">
                     <div class="box-header block-search">
                         <form action="" method="GET">

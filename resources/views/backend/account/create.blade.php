@@ -52,7 +52,7 @@
                         <!-- form start -->
                         <div class="box-body">
                             <div class="form-group">
-                                <label>{{ __('Họ và tên') }} <span class="require">(*)</span></label>
+                                <label>{{ __('Họ và tên') }} <span class="require"> (*)</span></label>
                                 <input type="text" class="form-control" name="name"
                                        id="name" placeholder="{{ __('Họ và tên') }}..."
                                        value="{{ old('name') }}" required>
@@ -69,7 +69,7 @@
                                        id="password" placeholder="Password..." required>
                             </div>
                             <div class="form-group">
-                                <label>{{ __('Email') }}</label>
+                                <label>{{ __('Email') }}</label><span class="require"> (*)</span>
                                 <input type="email" min="0" class="form-control" name="email"
                                        id="email" placeholder="{{ __('Email') }}..."
                                        value="{!! old('email') !!}">

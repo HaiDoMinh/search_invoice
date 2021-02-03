@@ -82,7 +82,7 @@ class LoginController extends Controller
         }
 
         if ($validator->fails()) {
-            return redirect()->route('login', ['input' => $input])->with('error', 'Email, Phone hoặc Mật khẩu không đúng.');
+            return redirect()->route('login')->with('error', 'Email, Phone hoặc Mật khẩu không đúng.');
 
         } else {
             $emailOrPhone = $request->input('email');
@@ -162,7 +162,6 @@ class LoginController extends Controller
 
     public function logoutGuest(Request $request)
     {
-       // dd('111');
         if( !empty($_SESSION['username']) ) {
 
             unset($_SESSION['username']);
