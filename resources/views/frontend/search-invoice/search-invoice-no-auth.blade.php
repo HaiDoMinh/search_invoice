@@ -206,7 +206,9 @@
                 $('#reload').find('img').attr('src', 'reload-captcha-code');
             },
             error: function (data) {
-               // console.log(data);
+                $msg = '<span class="error-msg">Server lỗi. Vui lòng thử lại sau.</span>';
+                $(".result-error").css("display", "block");
+                $(".result-error").append($msg);
             }
         });
     });

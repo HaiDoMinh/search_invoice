@@ -200,7 +200,7 @@
                 $('#reload').find('img').attr('src', 'reload-captcha-code');
             },
             error: function (data) {
-                $msg = '<span class="error-msg">Server lỗi </span>';
+                $msg = '<span class="error-msg">Server lỗi. Vui lòng thử lại sau.</span>';
                 $(".result-error").css("display", "block");
                 $(".result-error").append($msg);
             }
