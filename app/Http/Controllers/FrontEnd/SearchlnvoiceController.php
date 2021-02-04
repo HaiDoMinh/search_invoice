@@ -56,6 +56,12 @@ class SearchlnvoiceController extends BaseController
 
         $bkav = new BkavModel();
         $data = $bkav->GetDataInvoice( $docno, $user, $pass, $urlGet, $confimCode );
+        //var_dump($data); dd();
+        if($data == false)
+        {
+            $result = ['success'=>false, 'msg' => 'Server lỗi'];
+            return response()->json($result, 200);
+        }
         if( empty($data) )
         {
             $result = ['success'=>false, 'msg' => 'Không tìm thấy hóa đơn. Bạn vui lòng thử lại'];
