@@ -56,7 +56,7 @@ class SearchlnvoiceController extends BaseController
 
         $bkav = new BkavModel();
         $data = $bkav->GetDataInvoice( $docno, $user, $pass, $urlGet, $confimCode );
-        //var_dump($data); dd();
+
         if($data == false)
         {
             $result = ['success'=>false, 'msg' => 'Server lỗi'];
