@@ -85,9 +85,14 @@
                 <div class="clear"></div>
             </div>
 
-            <button type="button" class="btn btn-primary btl-lg btn-open" >
+            <button type="button" id="btsave" class="btn btn-success btl-lg btn-open">
+                <i class="fa fa-download" aria-hidden="true"></i> Tải xuống
+            </button>
+            <button type="button" id="btprint" class="btn btn-primary btl-lg btn-open" >
                 <i class="fa fa-print" aria-hidden="true"></i> In hóa đơn
             </button>
+
+            <a id='dwnldLnk' style="display: none;"></a>
         </div>
     </div>
 
@@ -125,6 +130,7 @@
 
 @section('script')
 <script type="text/javascript">
+    var $pdf, $namepdf;
 
     $(document).ajaxStart(function() {
         $("#loading").show();
@@ -133,8 +139,15 @@
         $("#loading").hide();
     });
 
-    $('.btn-open').click(function () {
+    $('#btprint').click(function () {
         $('#myModal').modal('show');
+    });
+
+    $('#btsave').click(function () {
+        var dlnk = document.getElementById('dwnldLnk');
+        dlnk.href = $pdf;
+        dlnk.download = $namepdf;
+        dlnk.click();
     });
 
     $('#reload').click(function () {
@@ -150,6 +163,7 @@
         $(".result").css("display", "none");
         $(".result-error span").remove();
         $(".modal-body iframe").remove();
+        $(".result span").remove();
 
         $.ajax({
             type: 'GET',
@@ -164,23 +178,28 @@
                 if(data['success'])
                 {
                     $datapdf = '<iframe src="data:application/pdf;base64,' + data['data']['pdf'] + '"></iframe>';
+
                     $(".modal-body").append($datapdf);
                     $(".model-button-box").css("display", "block");
-                    var $input = data['data']['result'];
                     $(".result-error span").remove();
 
-                    $("#invoiceprefix").append(chekInfor( $input['invoiceprefix'] ));
-                    $("#invoiceno").append(chekInfor( $input['invoiceno'] ));
-                    $("#buyername").append(chekInfor( $input['buyername'] ));
-                    $("#cusinvoicename").append(chekInfor( $input['cusinvoicename'] ));
-                    $("#taxid").append(chekInfor( $input['taxid'] ));
-                    $("#address").append(chekInfor( $input['address'] ));
-                    $("#grandtotal").append(chekInfor( formatNumber($input['grandtotal']) + " VNĐ" ));
+                    var $input = data['data']['result'];
+                    $namepdf = $input['invoiceprefix'] + '_' + $input['invoiceno'] + '.pdf';
+
+                    $("#invoiceprefix").append('<span>' + chekInfor( $input['invoiceprefix'] ) + '</span>');
+                    $("#invoiceno").append('<span>' + chekInfor( $input['invoiceno'] ) + '</span>');
+                    $("#buyername").append('<span>' + chekInfor( $input['buyername'] ) + '</span>');
+                    $("#cusinvoicename").append('<span>' + chekInfor( $input['cusinvoicename'] ) + '</span>');
+                    $("#taxid").append('<span>' + chekInfor( $input['taxid'] ) + '</span>');
+                    $("#address").append('<span>' + chekInfor( $input['address'] ) + '</span>');
+                    $("#grandtotal").append('<span>' + chekInfor( formatNumber($input['grandtotal']) + " VNĐ" )  + '</span>');
+
+                    $pdf = 'data:application/octet-stream;base64,' + data['data']['pdf'];
 
                     $(".result").css("display", "block");
                     $(".result-error").css("display", "none");
                 }else {
-                    $msg = '<span>'+ data['msg'] + '</span>';
+                    $msg = '<span class="error-msg">'+ data['msg'] + '</span>';
                     $(".result-error").css("display", "block");
                     $(".result-error").append($msg);
                 }

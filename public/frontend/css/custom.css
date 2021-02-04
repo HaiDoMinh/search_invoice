@@ -162,7 +162,7 @@ li a:hover {
     height:800px;
     margin-top: 30px;
 }
-.result span{
+.result error-msg{
     margin-top: 30px;
     color: red;
     font-weight: 600;
