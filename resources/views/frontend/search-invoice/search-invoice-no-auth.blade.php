@@ -184,13 +184,16 @@
                     $(".result-error span").remove();
 
                     var $input = data['data']['result'];
-                    $namepdf = $input['invoiceprefix'] + '_' + $input['invoiceno'] + '.pdf';
+                    $namepdf = 'HD_' + $input['invoiceprefix'] + '_' + $input['invoiceno'] + '.pdf';
 
                     $("#invoiceprefix").append('<span>' + chekInfor( $input['invoiceprefix'] ) + '</span>');
                     $("#invoiceno").append('<span>' + chekInfor( $input['invoiceno'] ) + '</span>');
                     $("#buyername").append('<span>' + chekInfor( $input['buyername'] ) + '</span>');
                     $("#cusinvoicename").append('<span>' + chekInfor( $input['cusinvoicename'] ) + '</span>');
-                    $("#taxid").append('<span>' + chekInfor( $input['taxid'] ) + '</span>');
+                    if($input['taxid'] > 0)
+                    {
+                        $("#taxid").append('<span>' + chekInfor( $input['taxid'] ) + '</span>');
+                    }
                     $("#address").append('<span>' + chekInfor( $input['address'] ) + '</span>');
                     $("#grandtotal").append('<span>' + chekInfor( formatNumber($input['grandtotal']) + " VNĐ" )  + '</span>');
 
@@ -198,8 +201,22 @@
 
                     $(".result").css("display", "block");
                     $(".result-error").css("display", "none");
+
+                    if(data['data']['pdf'] == undefined)
+                    {
+                        $(".result button").css("display", "none");
+                        $msg = '<span class="error-msg">'+ data['msg'] + '</span>';
+                        $(".result-error").append($msg);
+                        $(".result-error").css("display", "block");
+
+                    }
+                    else
+                    {
+                        $(".result button").css("display", "inline-block");
+                    }
                 }else {
                     $msg = '<span class="error-msg">'+ data['msg'] + '</span>';
+
                     $(".result-error").css("display", "block");
                     $(".result-error").append($msg);
                 }

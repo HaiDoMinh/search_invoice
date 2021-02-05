@@ -32,7 +32,7 @@ class BkavModel extends Model
         }
         return $output;
     }
-    public function GetDataInvoiceInfo($docno, $user, $pass, $urlGet, $confimCode)
+    public function GetDataInvoiceInfo($docno, $user, $pass, $urlGet, $confimCode = null)
     {
         if ( !empty($_SESSION['username']) )
         {
@@ -55,31 +55,23 @@ class BkavModel extends Model
         return $jsonDataInvoiceInfo;
     }
 
-    public function GetDataInvoice($docno, $user, $pass, $urlGet, $confimCode = null)
+    public function GetDataInvoice($user, $pass, $urlGet, $jsonDataInvoiceInfo)
     {
-        $status = true;
-        $jsonDataInvoiceInfo = $this->GetDataInvoiceInfo($docno, $user, $pass, $urlGet, $confimCode);
-        if( !empty($jsonDataInvoiceInfo['errorCode'] ))
-        {
-            $status = false;
-            return $status;
-        }
 
-        $response = Http::withBasicAuth($user, $pass)->get($urlGet. 'api_getwsinfo',
+        $response = Http::withBasicAuth($user, $pass)->get($urlGet . 'api_gettokeninfo',
             [
-                "clientid"        =>   (int)$jsonDataInvoiceInfo['result']['ad_client_id'],
-                "orgid"           =>   (int)$jsonDataInvoiceInfo['result']['ad_org_id'],
-                "warehouseid"     =>   (int)$jsonDataInvoiceInfo['result']['m_warehouse_id'],
-                "p_typeehd"       =>    1
+                "clientid" => (int)$jsonDataInvoiceInfo['result']['ad_client_id'],
+                "orgid" => (int)$jsonDataInvoiceInfo['result']['ad_org_id'],
+                "warehouseid" => (int)$jsonDataInvoiceInfo['result']['m_warehouse_id'],
+                "p_typeehd" => 1
             ]);
         $jsonDataWsInfo = $response->json();
 
-        if( !empty($jsonDataInvoiceInfo['errorCode'] ) )
-        {
-            $status = false;
-            return $status;
-        }
+        return $jsonDataWsInfo;
+    }
 
+    public function getDataBkav($jsonDataWsInfo, $jsonDataInvoiceInfo)
+    {
         $secretKey = $jsonDataWsInfo['result'][0]['passwordapi'];
         $pieces = explode(":", $secretKey);
         $key = base64_decode($pieces[0]);

@@ -34,7 +34,7 @@ class SearchlnvoiceController extends BaseController
         $user = env('API_USER');
         $pass = env('API_PASS');
 
-        if( empty( \Auth::user() ) && empty( $_SESSION['username'] ) )
+        if( empty( $_SESSION['username'] ) )
         {
             if( empty($confimCode) )
             {
@@ -55,16 +55,32 @@ class SearchlnvoiceController extends BaseController
         }
 
         $bkav = new BkavModel();
-        $data = $bkav->GetDataInvoice( $docno, $user, $pass, $urlGet, $confimCode );
 
-        if($data == false)
+        $jsonDataInvoiceInfo = $bkav->GetDataInvoiceInfo( $docno, $user, $pass, $urlGet, $confimCode);
+
+        if( !empty($jsonDataInvoiceInfo['errorCode'] ))
         {
-            $result = ['success'=>false, 'msg' => 'Server lỗi'];
+            $result = ['success'=>false, 'msg' => 'Không tìm thấy hóa đơn trên hệ thống STS'];
             return response()->json($result, 200);
         }
+        else
+        {
+            $jsonDataWsInfo = $bkav->GetDataInvoice($user, $pass, $urlGet, $jsonDataInvoiceInfo );
+
+            if( !empty($jsonDataWsInfo['errorCode'] ) )
+            {
+                $result = ['success'=>true, 'msg' => 'Server lỗi không tìm thấy tài khoản BKAV', 'data' => $jsonDataInvoiceInfo];
+                return response()->json($result, 200);
+            }
+            else
+            {
+                $data = $bkav->getDataBkav($jsonDataWsInfo, $jsonDataInvoiceInfo);
+            }
+        }
+
         if( empty($data) )
         {
-            $result = ['success'=>false, 'msg' => 'Không tìm thấy hóa đơn. Bạn vui lòng thử lại'];
+            $result = ['success'=>false, 'msg' => 'Không tìm thấy hóa đơn trên BKAV. Bạn vui lòng thử lại'];
         } else{
             $result = ['success'=>true, 'msg' => 'Thành công', 'data' => $data];
         }
